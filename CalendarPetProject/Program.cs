@@ -1,25 +1,32 @@
 using CalendarPetProject.CalendarDBContext;
 using CalendarPetProject.CalendarDBContext.DataBaseOperationService;
-using CalendarPetProject.CalendarDBContext.Tables;
+using CalendarPetProject.Data;
+using CalendarPetProject.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<ApplicationDBContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer("Data Source=DESKTOP-M2458CE\\SQLEXPRESS;Initial Catalog=CalendarDb;Integrated Security=True;Trust Server Certificate=True"));
+builder.Services.AddIdentity<Users, IdentityRole>(options =>
+    {
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequiredLength = 50;
+        options.User.RequireUniqueEmail = true;
+        options.SignIn.RequireConfirmedPhoneNumber = true;
+        options.SignIn.RequireConfirmedEmail = true;
+        options.SignIn.RequireConfirmedAccount = true;
+    }
+).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
 var app = builder.Build();
 
-// Add test user data
-UserData userData = new("Roman", "Nahirnyi", "234", "123", DateTime.Now);
-using (var scope = app.Services.CreateScope())
-{
-    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDBContext>();
-    var service = new DataBaseOperationService(dbContext);
-    service.UploadInformation(app, userData);
-}
 
 if (!app.Environment.IsDevelopment())
 {

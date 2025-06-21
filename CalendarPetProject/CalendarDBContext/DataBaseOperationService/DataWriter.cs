@@ -1,14 +1,14 @@
-﻿using CalendarPetProject.CalendarDBContext.Tables;
-using CalendarPetProject.CalendarDBContext;
+﻿using CalendarPetProject.CalendarDBContext;
 using Microsoft.EntityFrameworkCore;
+using CalendarPetProject.Data;
 
 namespace CalendarPetProject.CalendarDBContext.DataBaseOperationService
 {
     public class DataWriter<T> : IDataWriter<T> where T : class
     {
-        private readonly ApplicationDBContext _context;
+        private readonly AppDbContext _context;
 
-        public DataWriter(ApplicationDBContext context)
+        public DataWriter(AppDbContext context)
         {
             _context = context;
         }
