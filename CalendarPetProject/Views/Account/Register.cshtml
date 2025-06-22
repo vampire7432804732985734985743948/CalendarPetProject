@@ -1,1 +1,67 @@
-﻿<h1>Registration</h1>
+﻿@using CalendarPetProject.ViewModels.AccountEnterance;
+@model RegisterViewModel;
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="account-container">
+    <div class="account-box">
+        <h1 class="text-center mb-4">
+            Registration
+        </h1>
+        <form asp-action="Register" method="post" class="d-flex flex-column">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Login" class="form-label"></label>
+                <br />
+                <input asp-for="Login" class="form-controll border border-primary w-100" id="account-controll-input" />
+                <span asp-validation-for="Login" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Password" class="form-label"></label>
+                <br />
+                <input asp-for="Password" class="form-controll w-100" id="account-controll-input" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <br />
+                <input asp-for="ConfirmPassword" class="form-controll w-100" id="account-controll-input" />
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="FirstName" class="form-label"></label>
+                <br />
+                <input asp-for="FirstName" class="form-controll border border-primary w-100" id="account-controll-input" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="LastName" class="form-label"></label>
+                <br />
+                <input asp-for="LastName" class="form-controll border border-primary w-100" id="account-controll-input" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="DateOfBirth" class="form-label"></label>
+                <br />
+                <input asp-for="DateOfBirth" type="date" class="form-controll border border-primary w-100" id="account-controll-input" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-check mb-3">
+                <label class="form-check-label">
+                    <input asp-for="DoesRememberUser" class="form-check-input" />
+                    @Html.DisplayNameFor(a => a.DoesRememberUser)
+                </label>
+            </div>
+            <div class="float-end p-1">
+                <a asp-controller="Account" asp-action="Login" class="text-decoration-none">Already have an account</a>
+            </div>
+            <input type="submit" value="SignUp" class="btn btn-success w-100 p-2" />
+            <div class="text-center mt-2">
+                <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3 p-4">Back</a>
+            </div>
+        </form>
+    </div>
+</div>

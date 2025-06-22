@@ -14,22 +14,21 @@ namespace CalendarPetProject.ViewModels.AccountEnterance
         [Compare("ConfirmPassword", ErrorMessage = "Password does't match")]
         public string? Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Corfirm password")]
 
         [Required(ErrorMessage = "Password is reqired")]
         [StringLength(50, MinimumLength = 8, ErrorMessage = "Write normal password kurwa!!!")]
         [DataType(DataType.Password)]
         public string? ConfirmPassword { get; set; }
 
-        [Display(Name = "Remember me?")]
-        public bool DoesRememberUser { get; set; }
-
         [Required]
         public string? FirstName { get; set; }
         [Required]
         public string? LastName { get; set; }
 
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
 
+        [Display(Name = "Remember me?")]
+        public bool DoesRememberUser { get; set; }
     }
 }
