@@ -1,3 +1,48 @@
-﻿body {
-    background: url("'../Resources/Images/forest Background.jpg'")
+﻿
+body {
+    background: url('../Resources/Images/ForestBackground.jpg');
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../Resources/Images/ForestBackground.jpg') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+    transition: filter 0.3s ease;
+    pointer-events: none;
+}
+
+body:has(#account-controll-input:focus)::before {
+    filter: blur(15px);
+}
+.account-container {
+    background-position:center;
+    background-repeat: repeat-y;
+    background-size:cover;
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    padding: 2rem 0;
+    width:100%;
+}
+.account-box{
+    background-color:white;
+    padding: 30px;
+    border-radius:10px;
+    box-shadow: 0 0 10px rgba(0,0,0, 0.3);
+    max-width:500px;
+    width:100%;
+    opacity:0.9;
+}
+body:has(#account-controll-input:focus) .background {
+    filter: blur(5px);
 }
