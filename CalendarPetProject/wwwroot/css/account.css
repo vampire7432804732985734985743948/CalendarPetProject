@@ -16,7 +16,7 @@ body::before {
     background: url('../Resources/Images/ForestBackground.jpg') no-repeat center center;
     background-size: cover;
     z-index: -1;
-    transition: filter 0.3s ease;
+    transition: filter 0.7s ease;
     pointer-events: none;
 }
 
