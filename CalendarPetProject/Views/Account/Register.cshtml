@@ -49,16 +49,10 @@
                 <input asp-for="DateOfBirth" type="date" class="form-controll border border-primary w-100" id="account-controll-input" />
                 <span asp-validation-for="DateOfBirth" class="text-danger"></span>
             </div>
-            <div class="form-check mb-3">
-                <label class="form-check-label">
-                    <input asp-for="DoesRememberUser" class="form-check-input" />
-                    @Html.DisplayNameFor(a => a.DoesRememberUser)
-                </label>
-            </div>
             <div class="float-end p-1">
                 <a asp-controller="Account" asp-action="Login" class="text-decoration-none">Already have an account</a>
             </div>
-            <input type="submit" value="SignUp" class="btn btn-success w-100 p-2" />
+            <input type="submit" value="SignUp"  class="btn btn-success w-100 p-2" />
             <div class="text-center mt-2">
                 <a asp-controller="Home" asp-action="Index" class="text-decoration-none mt-3 p-4">Back</a>
             </div>
