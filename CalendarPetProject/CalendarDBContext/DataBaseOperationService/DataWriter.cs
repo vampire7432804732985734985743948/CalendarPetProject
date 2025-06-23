@@ -21,8 +21,11 @@ namespace CalendarPetProject.CalendarDBContext.DataBaseOperationService
 
         public async Task AddEntityAsync(T entity)
         {
-            await _context.Set<T>().AddAsync(entity);
-            await _context.SaveChangesAsync();
+            if (entity != null)
+            { 
+                await _context.Set<T>().AddAsync(entity);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }

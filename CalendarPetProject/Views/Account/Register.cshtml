@@ -1,5 +1,5 @@
 ﻿@using CalendarPetProject.ViewModels.AccountEnterance;
-@model RegisterViewModel;
+@model RegisterViewModel
 
 @{
     ViewData["Title"] = "Register";
@@ -16,7 +16,7 @@
             <div class="mb-3">
                 <label asp-for="Login" class="form-label"></label>
                 <br />
-                <input asp-for="Login" class="form-controll border border-primary w-100" id="account-controll-input" />
+                <input asp-for="Login" class="form-control border border-primary w-100" id="account-controll-input" />
                 <span asp-validation-for="Login" class="text-danger"></span>
             </div>
             <div class="mb-3">
