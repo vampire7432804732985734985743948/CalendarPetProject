@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalendarPetProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250623104813_InitailMigration")]
+    [Migration("20250623124855_InitailMigration")]
     partial class InitailMigration
     {
         /// <inheritdoc />
@@ -37,8 +37,8 @@ namespace CalendarPetProject.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateOnly>("DateOfBirth")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)

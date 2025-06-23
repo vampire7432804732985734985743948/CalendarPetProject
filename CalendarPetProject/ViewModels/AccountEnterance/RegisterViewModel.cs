@@ -26,10 +26,11 @@ namespace CalendarPetProject.ViewModels.AccountEnterance
         [Required]
         public string? LastName { get; set; }
 
-        public DateOnly DateOfBirth { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime DateOfBirth { get; set; }
 
 
-        public RegisterViewModel(string login, string password, string confirmPassword, string firstName, string lastName, DateOnly dateOfBirth)
+        public RegisterViewModel(string login, string password, string confirmPassword, string firstName, string lastName, DateTime dateOfBirth)
         {
             Login = login;
             Password = password;
