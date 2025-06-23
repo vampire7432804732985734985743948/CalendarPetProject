@@ -28,7 +28,20 @@ namespace CalendarPetProject.ViewModels.AccountEnterance
 
         public DateOnly DateOfBirth { get; set; }
 
-        [Display(Name = "Remember me?")]
-        public bool DoesRememberUser { get; set; }
+
+        public RegisterViewModel(string login, string password, string confirmPassword, string firstName, string lastName, DateOnly dateOfBirth)
+        {
+            Login = login;
+            Password = password;
+            ConfirmPassword = confirmPassword;
+            FirstName = firstName;
+            LastName = lastName;
+            DateOfBirth = dateOfBirth;
+        }
+
+        public RegisterViewModel()
+        {
+                
+        }
     }
 }
