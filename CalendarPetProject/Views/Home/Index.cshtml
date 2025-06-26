@@ -3,9 +3,7 @@
     ViewData["Title"] = "Registration";
 }
 @using Microsoft.AspNetCore.Identity;
-@using CalendarPetProject.Models
 @inject SignInManager<Users> signInManager;
-@inject Users users;
 
 <ul class="navbar-nav ms-auto">
     @if (signInManager.IsSignedIn(User))
