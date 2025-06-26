@@ -8,12 +8,12 @@ namespace CalendarPetProject.ViewModels.AccountEnterance
     {
         [Required(ErrorMessage = "Email is reqired")]
         [EmailAddress]
-        public string? Login { get; set; }
+        public string Login { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Password is reqired")]
         [DataType(DataType.Password)]
-        public string? Password { get; set; }
-
+        public string Password { get; set; } = string.Empty;
+         
         [Display(Name = "Remember me?")]
         public bool DoesRememberUser { get; set; }
     }

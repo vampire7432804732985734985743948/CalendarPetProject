@@ -6,25 +6,25 @@ namespace CalendarPetProject.ViewModels.AccountEnterance
     {
         [Required(ErrorMessage = "Email is reqired")]
         [EmailAddress]
-        public string? Login { get; set; }
+        public string Login { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Password is reqired")]
         [DataType(DataType.Password)]
-        [StringLength(50, MinimumLength = 8, ErrorMessage = "Write normal password kurwa!!!")]
+        [StringLength(50, MinimumLength = 8, ErrorMessage = "Write normal password!!!")]
         [Compare("ConfirmPassword", ErrorMessage = "Password does't match")]
-        public string? Password { get; set; }
+        public string Password { get; set; } = string.Empty;
 
         [Display(Name = "Corfirm password")]
 
         [Required(ErrorMessage = "Password is reqired")]
         [StringLength(50, MinimumLength = 8, ErrorMessage = "Write normal password kurwa!!!")]
         [DataType(DataType.Password)]
-        public string? ConfirmPassword { get; set; }
+        public string ConfirmPassword { get; set; } = string.Empty;
 
         [Required]
-        public string? FirstName { get; set; }
+        public string FirstName { get; set; } = string.Empty;
         [Required]
-        public string? LastName { get; set; }
+        public string LastName { get; set; } = string.Empty;
 
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }

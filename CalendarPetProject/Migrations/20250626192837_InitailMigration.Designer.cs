@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalendarPetProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250623124855_InitailMigration")]
+    [Migration("20250626192837_InitailMigration")]
     partial class InitailMigration
     {
         /// <inheritdoc />
