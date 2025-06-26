@@ -1,12 +1,7 @@
-﻿using CalendarPetProject.BusinessLogic.Security.Password;
-using CalendarPetProject.CalendarDBContext.DataBaseOperationService;
-using CalendarPetProject.Data;
-using CalendarPetProject.Models;
+﻿using CalendarPetProject.Models;
 using CalendarPetProject.ViewModels.AccountEnterance;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Razor.TagHelpers;
-using System.Threading.Tasks;
 
 namespace CalendarPetProject.Controllers
 {
@@ -29,20 +24,35 @@ namespace CalendarPetProject.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel loginViewModel)
         {
-            if (!ModelState.IsValid && loginViewModel.Login != null && loginViewModel.Password != null)
+            if (!ModelState.IsValid)
+                return View(loginViewModel);
+
+            var user = await _userManager.FindByEmailAsync(loginViewModel.Login);
+
+            if (user == null)
             {
-                var result = await _signInManager.PasswordSignInAsync
-                    (
-                        loginViewModel.Login,
-                        loginViewModel.Password,
-                        loginViewModel.DoesRememberUser,
-                        lockoutOnFailure: false
-                    );
-                if (result.Succeeded)
-                {
-                    return View("Index", "Home");
-                }
+                ModelState.AddModelError(string.Empty, "Cannot find such user.");
+                return View(loginViewModel);
             }
+
+             if (!await _userManager.IsEmailConfirmedAsync(user))
+             {
+                ModelState.AddModelError(string.Empty, "You must confirm your email.");
+                return View(loginViewModel);
+             }
+
+            var result = await _signInManager.PasswordSignInAsync(
+                user.UserName!,
+                loginViewModel.Password,
+                loginViewModel.DoesRememberUser,
+                lockoutOnFailure: false
+            );
+
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return View(loginViewModel);
         }
@@ -53,6 +63,7 @@ namespace CalendarPetProject.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Login", "Account");
         }
+
         [HttpGet]
         public IActionResult Register()
         {
@@ -73,14 +84,17 @@ namespace CalendarPetProject.Controllers
                 SecondName = registrationViewModel.LastName,
                 DateOfBirth = registrationViewModel.DateOfBirth
             };
+            if (user != null)
+            {
+                var result = await _userManager.CreateAsync(user, registrationViewModel.Password);
 
-            var result = await _userManager.CreateAsync(user, registrationViewModel.Password);
+                if (result.Succeeded)
+                    return RedirectToAction("Login");
 
-            if (result.Succeeded)
-                return RedirectToAction("Login");
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError(string.Empty, error.Description);
+            }
 
-            foreach (var error in result.Errors)
-                ModelState.AddModelError(string.Empty, error.Description);
 
             return View(registrationViewModel);
         }
