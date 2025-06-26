@@ -46,3 +46,9 @@ body:has(#account-controll-input:focus)::before {
 body:has(#account-controll-input:focus) .background {
     filter: blur(5px);
 }
+.item{
+    position:relative;
+    display:flex;
+    flex-direction:row;
+    color:red;
+}
