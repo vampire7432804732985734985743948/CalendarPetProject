@@ -34,16 +34,17 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-content: space-evenly;
-    gap: 20px;
+    gap: 3em;
     max-width: auto;
-    border: 2px solid black;
-    padding: 0px;
+    padding: 30px;
 }
 .privacy-module-flex-row {
     display: flex;
     flex-direction: row;
+    gap:3em;
 }
 .item {
+    padding: 20px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -51,7 +52,11 @@ body {
     flex-wrap: wrap;
     box-sizing: border-box;
     max-width: 50%;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 0 10px darkgrey;
 }
+
 .text-block{
     color: gray;
 }

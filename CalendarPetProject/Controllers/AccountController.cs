@@ -29,7 +29,7 @@ namespace CalendarPetProject.Controllers
 
             var user = await _userManager.FindByEmailAsync(loginViewModel.Login);
 
-            if (user == null)
+           /* if (user == null)
             {
                 ModelState.AddModelError(string.Empty, "Cannot find such user.");
                 return View(loginViewModel);
@@ -39,7 +39,7 @@ namespace CalendarPetProject.Controllers
              {
                 ModelState.AddModelError(string.Empty, "You must confirm your email.");
                 return View(loginViewModel);
-             }
+             }*/
 
             var result = await _signInManager.PasswordSignInAsync(
                 user.UserName!,
