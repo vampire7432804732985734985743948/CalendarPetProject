@@ -2,8 +2,19 @@ html {
   font-size: 14px;
 }
 
+#dancing-script-LogoHeaderText {
+    font-family: "Dancing Script", cursive;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    display: flex;
+    align-items:center; 
+    height: 1%;
+}
+
+
 @media (min-width: 768px) {
-  html {
+    html {
     font-size: 16px;
   }
 }
@@ -64,4 +75,15 @@ body {
     .privacy-module{
         flex-direction:column;
     }
+}
+.HeaderLogo{
+    max-width:50px;
+    max-height:50px;
+    align-self:center;
+}
+.SocialIcon {
+    padding-top:5px;
+    max-width: 50px;
+    max-height: 50px;
+    float:right;
 }
