@@ -1,7 +1,19 @@
 ﻿@{
     ViewData["GuestView"] = "GuestView";
 }
-<h1>@ViewData["GuestView"]</h1>
-<div class="GuestMainPageBox">
-<img src="~/Resources/Images/GuestMainImage.jpg" class="GuestMainPageImage">
+<link rel="stylesheet" href="~/css/guestPage.css" asp-append-version="true" />
+
+<div class="body-background">
+    <p>sdka;.dkal;dka</p>
+</div>
+
+<div class="guest-main-page-box d-flex align-items-center mt-5">
+
+    <a class="button nav-link" asp-controller="Account" asp-action="Register">
+        <span class="button_lg">
+            <span class="button_sl"></span>
+            <span class="button_text">REGISTER NOW</span>
+        </span>
+    </a>
+    <img src="~/Resources/Images/GuestMainImage.jpg" class="guest-main-page-image">
 </div>

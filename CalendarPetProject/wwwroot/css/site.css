@@ -87,21 +87,3 @@ body {
     max-height: 50px;
     float:right;
 }
-.GuestMainPageBox{
-    display:flex;
-}
-.GuestMainPageImage {
-    width: 50%;
-    min-width: 40dvh;
-    border: solid 2px rgb(184, 227, 220, 0.6);
-    border-radius: 1dvh;
-    box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.3);
-    align-self: flex-end;
-    margin-top: 10dvh;
-    transition: 0.7s;
-}
-    .GuestMainPageImage:hover {
-        width: 52%;
-        box-shadow: 2px 2px 10px 1px rgba(0, 0, 0, 0.45);
-        transition:0.8s;
-    }

@@ -27,12 +27,10 @@ namespace CalendarPetProject.Controllers
         {
             if (User.Identity?.IsAuthenticated == true)
             {
-                // User is logged in, return the logged-in view or redirect to a dashboard
                 return View("LoggedInView");
             }
             else
             {
-                // User is not logged in, return the guest view or redirect to login page
                 return View("GuestView");
             }
         }
