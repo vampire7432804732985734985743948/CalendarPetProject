@@ -1,4 +1,7 @@
-﻿.guest-main-page-box {
+﻿body {
+    overflow-x: hidden;
+}
+.guest-main-page-box {
     display: flex;
     justify-content: center;
     align-content: center;
@@ -11,11 +14,12 @@
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
 }
 .body-background {
-    margin:0px;
-    padding:0px;
+    margin: 0px;
+    padding: 0px;
     box-sizing: border-box;
-    width: 100%;
-    height: auto;
+    width: 100dvw;
+    margin-left: calc(-50vw + 50%);
+    height: 91dvh;
     background: url('../Resources/Images/ForestBackground.jpg') no-repeat center center;
     background-size: cover;
     z-index: -1;
@@ -150,4 +154,7 @@
     .guest-main-page-image {
         width: 80%;
     }
+}
+.no-margin{
+    margin:0px;
 }
