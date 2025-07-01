@@ -20,9 +20,11 @@
     width: 100dvw;
     margin-left: calc(-50vw + 50%);
     height: 91dvh;
-    background: url('../Resources/Images/ForestBackground.jpg') no-repeat center center;
+    background-repeat:no-repeat;
     background-size: cover;
+    background-position: center;
     z-index: -1;
+    transition: background-image 2s ease-in-out;
 }
 .button {
     max-height: 60px;
