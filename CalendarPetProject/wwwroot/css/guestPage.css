@@ -1,6 +1,7 @@
 ﻿body {
     overflow-x: hidden;
 }
+
 .guest-main-page-box {
     display: flex;
     justify-content: center;
@@ -20,11 +21,35 @@
     width: 100dvw;
     margin-left: calc(-50vw + 50%);
     height: 91dvh;
+    z-index: -1;
     background-repeat:no-repeat;
+    background:url('/Resources//Images//RandomBackgroundImages/зтп/Mountain3.png') no-repeat center center;
+    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    z-index: -1;
     transition: background-image 2s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.base-slogan-degign{
+    color: white;
+    text-shadow: 0px 0px 10px black;
+    text-align: center;
+    align-items: center;
+
+}
+#slogan {
+    transition: 2s;
+    font-size: 60px;
+    transition: opacity 0.5s ease-in-out;
+    opacity: 1;
+    font-weight: 600;
+}
+#sub-slogan{
+    font-weight: 300;
+    font-size: 18px;
+    margin:0px;
 }
 .button {
     max-height: 60px;
@@ -156,7 +181,4 @@
     .guest-main-page-image {
         width: 80%;
     }
-}
-.no-margin{
-    margin:0px;
 }
