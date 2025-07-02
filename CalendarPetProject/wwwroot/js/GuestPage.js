@@ -30,15 +30,31 @@ const slogans = [
     "LIFE’S BETTER WITH A PLAN."
 ];
 
+let accuiredSlogans = [slogans.length];
 let slogan = document.getElementById("slogan");
 function SelectSlogan() {
     slogan.style.opacity = 0;
     setTimeout(() => {
-        slogan.innerText = slogans[SelectRandomElement(slogans.length)];
+        let selectedSlogan = SelectRandomElement(slogans.length)
+        for (var i = 0; i < accuiredSlogans.length; i++) {
+            if (selectedSlogan == accuiredSlogans) {
+                break;
+                return;
+            }
+        }
+        slogan.innerText = slogans[selectedSlogan];
+        accuiredSlogans.push(selectedSlogan);
+        if (accuiredSlogans[accuiredSlogans.length] != null) {
+            accuiredSlogans = ClearArray(accuiredSlogans);
+        }
         slogan.style.opacity = 1; 
     }, 500);
 }
-
+function ClearArray(array) {
+    for (var i = 0; i < array.length; i++) {
+        array[i] = null;
+    }
+}
 
 UpdateBackground();
 SelectSlogan();

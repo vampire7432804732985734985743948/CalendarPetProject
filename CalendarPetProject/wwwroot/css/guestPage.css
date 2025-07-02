@@ -22,8 +22,6 @@
     margin-left: calc(-50vw + 50%);
     height: 91dvh;
     z-index: -1;
-    background-repeat:no-repeat;
-    background:url('/Resources//Images//RandomBackgroundImages/зтп/Mountain3.png') no-repeat center center;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -31,6 +29,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    filter: drop-shadow(1px 10px 20px rgba(0, 0, 0, 0.4));
+    padding: 20px;
 }
 .base-slogan-degign{
     color: white;
