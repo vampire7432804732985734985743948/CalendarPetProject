@@ -4,6 +4,7 @@ using CalendarPetProject.CalendarDBContext.DataBaseOperationService;
 using CalendarPetProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using CalendarPetProject.Data.Constants;
 
 var builder = WebApplication.CreateBuilder(args);
 
