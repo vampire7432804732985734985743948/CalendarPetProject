@@ -1,4 +1,4 @@
-﻿namespace CalendarPetProject.Data
+﻿namespace CalendarPetProject.Data.Constants
 {
     public static class DataBaseConstantsCollector
     {

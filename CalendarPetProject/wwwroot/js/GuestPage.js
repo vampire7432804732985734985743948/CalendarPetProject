@@ -1,4 +1,6 @@
-﻿const images = [
+﻿AOS.init();
+
+const images = [
     "url('../Resources/Images/RandomBackgroundImages/Waterfall1.png')",
     "url('../Resources/Images/RandomBackgroundImages/DarkSpace2.png')",
     "url('../Resources/Images/RandomBackgroundImages/DarkSpace3.png')",

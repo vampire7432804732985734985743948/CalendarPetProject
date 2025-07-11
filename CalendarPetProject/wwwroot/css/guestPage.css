@@ -182,3 +182,46 @@
         width: 80%;
     }
 }
+.card-image {
+    width: 100%;
+    border-radius: 10px;
+}
+.card{
+    position:relative;
+    padding-top:20px;
+    width: 500px;
+    border-radius: 15px;
+    cursor:pointer;
+    transition:0.3s;
+    display:flex;
+    flex-direction:column;
+    padding-left:30px;
+}
+.card:hover {
+    transform: translateY(-10px);
+    transition: 0.3s;
+    box-shadow: 0px 10px 30px #9a9a9a;
+}
+.card-name{
+    font-size:12px;
+}
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    width: 100dvw;
+    padding: 100px;
+    margin: 0px;
+    margin-left: calc(-50vw + 50%);
+    margin-top: 50px;
+    align-content: space-around;
+    gap: 5EM;
+}
+.logo-image{
+    max-width:120px;
+}
+.technology-used-container{
+    display: flex;
+    gap: 10em;
+    align-content:space-around;
+    align-items:baseline;
+}
