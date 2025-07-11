@@ -62,3 +62,24 @@ UpdateBackground();
 SelectSlogan();
 setInterval(SelectSlogan, 2000);
 setInterval(UpdateBackground, 2000);
+
+var cards = document.getElementsByClassName("card");
+
+document.addEventListener("mouseover", e => {
+    const card = e.target.closest('.card');
+    if (card) {
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].style.filter = "grayscale(100%) blur(5px)";
+        }
+        card.style.filter = "grayscale(0%) blur(0px)";
+    }
+});
+
+document.addEventListener("mouseout", e => {
+    const card = e.target.closest('.card');
+    if (card) {
+        for (let i = 0; i < cards.length; i++) {
+            cards[i].style.filter = "grayscale(0%) blur(0px)";
+        }
+    }
+});
