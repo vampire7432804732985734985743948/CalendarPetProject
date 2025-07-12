@@ -6,7 +6,10 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<div id="overlay" class="overlay" style="display:none;"></div>
 <div class="body-background di">
     <p id="slogan" class="slogan-text base-slogan-degign"></p>
     <p id="sub-slogan" class="slogan-text base-slogan-degign">Stay organized, meet your goals, and take control of your time—all in one place.</p>
@@ -24,35 +27,35 @@
 </div>
 
 <div class="cards-container" data-aos="fade-up">
-    <div class="card">
+    <div class="card" data-id="1">
         <p class="card-name text-uppercase">Enchance your experience with AI</p>
         <p class="fw-bold">AI Integration</p>
          <div class="card-image-container">
              <img src="~/Resources/Images/Cards/Cover/Ai.png" class="card-image"/>
          </div>
     </div>
-    <div class="card">
+    <div class="card" data-id="2">
         <p class="card-name text-uppercase">adjust your schelude depending</p>
         <p class="fw-bold">Agjust time by your own</p>
         <div class="card-image-container">
             <img src="~/Resources/Images/Cards/Cover/Business.png" class="card-image" />
         </div>
     </div>
-    <div class="card">
+    <div class="card" data-id="3">
         <p class="card-name text-uppercase">Plan the best moments in your life</p>
         <p class="fw-bold">Add some plans</p>
         <div class="card-image-container">
             <img src="~/Resources/Images/Cards/Cover/Plans.png" class="card-image" />
         </div>
     </div>
-    <div class="card">
+    <div class="card" data-id="4">
         <p class="card-name text-uppercase">Forget about being late</p>
         <p class="fw-bold">You will be notified</p>
         <div class="card-image-container">
             <img src="~/Resources/Images/Cards/Cover/BeNotified.png" class="card-image" />
         </div>
     </div>
-    <div class="card">
+    <div class="card" data-id="5">
         <p class="card-name text-uppercase">Improve your discipline</p>
         <p class="fw-bold">Be focused on your tasks</p>
         <div class="card-image-container">
@@ -60,6 +63,21 @@
         </div>
     </div>
 </div>
+
+<div id="card-description" class="description-box" style="display: none;">
+    <div class="desc-content">
+        <div class="desc-text m-4">
+            <h2 id="desc-title">Title </h2>
+            <hr/>
+            <p id="desc-paragraph" class="card-description">description</p>
+            <a asp-controller="Account" asp-action="Register" class=" card-get-started text-uppercase">Get started</a>
+
+        </div>
+        <img  id="desc-image" alt="Card image" />
+    </div>
+    <button class="close-btn" onclick="hideDescription()">×</button>
+</div>
+
 <h1>Technologies we have used</h1>
 <div class="technology-used-container">
     <a href="https://learn.microsoft.com/en-us/aspnet/web-pages/">
@@ -86,4 +104,7 @@
 
 </div>
 <script src="~/js/GuestPage.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+<script>
+    window.showDescriptionFromServer = @(ViewBag.ShowDescription == true ? "true" : "false");
+</script>
