@@ -4,8 +4,5 @@
     {
         private readonly EventContainer _dayEventContainer = new();
         private int _dayCount;
-
-        
-
     }
 }

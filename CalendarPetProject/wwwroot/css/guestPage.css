@@ -1,7 +1,31 @@
 ﻿body {
     overflow-x: hidden;
 }
-
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0); 
+    z-index: 9998; 
+    cursor: not-allowed;
+}
+body.no-scroll {
+    overflow: hidden;
+}
+.slogan-text {
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+.card-description {
+    font-family: "Work Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
 .guest-main-page-box {
     display: flex;
     justify-content: center;
@@ -70,46 +94,46 @@
     transition: all .15s ease;
 }
 
-    .button::before,
-    .button::after {
-        content: '';
-        display: block;
-        position: absolute;
-        right: 0;
-        left: 0;
-        height: calc(50% - 5px);
-        border: 1px solid #7D8082;
-        transition: all .15s ease;
-    }
+.button::before,
+.button::after {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: calc(50% - 5px);
+    border: 1px solid #7D8082;
+    transition: all .15s ease;
+}
 
-    .button::before {
-        top: 0;
-        border-bottom-width: 0;
-    }
+.button::before {
+    top: 0;
+    border-bottom-width: 0;
+}
 
-    .button::after {
-        bottom: 0;
-        border-top-width: 0;
-    }
+.button::after {
+    bottom: 0;
+    border-top-width: 0;
+}
 
-    .button:active,
-    .button:focus {
-        outline: none;
-    }
+.button:active,
+.button:focus {
+    outline: none;
+}
 
-        .button:active::before,
-        .button:active::after {
-            right: 3px;
-            left: 3px;
-        }
+.button:active::before,
+.button:active::after {
+    right: 3px;
+    left: 3px;
+}
 
-        .button:active::before {
-            top: 3px;
-        }
+.button:active::before {
+    top: 3px;
+}
 
-        .button:active::after {
-            bottom: 3px;
-        }
+.button:active::after {
+    bottom: 3px;
+}
 
 .button_lg {
     position: relative;
@@ -254,10 +278,96 @@
     color: white;
 
 }
+.description-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    max-width: 90%;
+    width: 85%;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    z-index: 9999;
+
+}
+.desc-paragraph {
+    width: 300px;
+}
+.desc-content {
+    display: flex;
+   
+}
+#desc-image {
+    margin: 0px;
+    padding: 0px;
+    width: 60%;
+    height: auto;
+    border-radius: 10px;
+    align-items: flex-end;
+    background-size: cover;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color:white;
+    text-shadow: 0px 0px 10px grey;
+}
+.card-get-started {
+    --color: #0077ff;
+    font-family: inherit;
+    display: inline-block;
+    width: 35%;
+    text-decoration:none;
+    text-align:center;
+    overflow: hidden;
+    cursor: pointer;
+    margin: 20px;
+    font-size: 17px;
+    z-index: 1;
+    color: var(--color);
+    border: 2px solid var(--color);
+    border-radius: 6px;
+    padding:8px;
+    position: relative;
+}
+
+.card-get-started::before {
+    position: absolute;
+    content: "";
+    background: var(--color);
+    width: 300px;
+    height: 100px;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.card-get-started:hover {
+    color: white;
+}
+
+.card-get-started:before {
+    top: 100%;
+    left: 100%;
+    transition: 0.3s all;
+}
+
+.card-get-started:hover::before {
+    top: -30px;
+    left: -30px;
+}
+
 .responsive-video {
     width: 100%;
     height: auto;
     display: block;
     border-radius:10px;
-
 }

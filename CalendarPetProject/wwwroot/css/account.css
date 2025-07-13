@@ -1,6 +1,6 @@
 ﻿
 body {
-    background: url('../Resources/Images/ForestBackground.jpg');
+    background: url('../Resources/Images/Backgrounds/ForestBackground.jpg');
     width: 100%;
     background-size: cover;
     background-position: center;
@@ -13,7 +13,7 @@ body::before {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('../Resources/Images/ForestBackground.jpg') no-repeat center center;
+    background: url('../Resources/Images/') no-repeat center center;
     background-size: cover;
     z-index: -1;
     transition: filter 0.7s ease;
