@@ -98,7 +98,8 @@
         document.getElementById('desc-image').src = imageUrl;
         document.getElementById('card-description').style.display = 'block';
         document.getElementById('overlay').style.display = 'block';
-        document.body.classList.add('no-scroll'); 
+        document.body.classList.add('no-scroll');
+        document.body.filter = "brigthness(10%)";
     }
     window.hideDescription = function () {
         document.getElementById('card-description').style.display = 'none';

@@ -92,3 +92,19 @@ body {
     max-height: 50px;
     float:right;
 }
+.footer-block{
+    display:flex;
+    flex-direction:row;
+    padding:0px;
+    margin:0px;
+    gap:3em;
+    align-self:center;
+    align-content:center;
+    align-items:center;
+}
+.footer-item {
+    display:flex;
+    flex-direction:column;
+    padding:0px;
+    margin:0px;
+}
