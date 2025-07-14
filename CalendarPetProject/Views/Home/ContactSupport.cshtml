@@ -4,4 +4,23 @@
 @{
     ViewData["ContactSupport"] = "Contact Support";
 }
-fdskfl's;'
+<link rel="stylesheet" href="~/css/SupportPage.css" asp-append-version="true" />
+
+<div class="SupportCard">
+    <div class="FieldFlex">
+    <div class="SupportField">
+        <p class="FieldText">EMail</p>
+        <input class="SupportInput" placeholder="Example@gmail.com">
+    </div>
+
+    <div class="SupportField">
+            <p class="FieldText">Title</p>
+        <input class="SupportInput" placeholder="Title">
+    </div>
+
+    <div class="SupportField">
+            <p class="FieldText">Message</p>
+            <textarea placeholder="Type your message" class="SupportInputMessage"></textarea>
+        </div>
+    </div>
+</div>
