@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - CalendarPetProject</title>
+    <title>@ViewData["Title"] - Lucky calendar</title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -43,12 +43,26 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - CalendarPetProject - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            <a asp-area="" asp-controller="Home" asp-action="Index">
-                <img src="~/Resources/Images/GithubIcon.png" class="SocialIcon">
-            </a>
+    <footer class="border-top footer">
+        <div class="container footer-block">
+            &copy; 2025 - CalendarPetProject - 
+            <div class="footer-item">
+                <p>Privacy page</p>
+                <a asp-area="" class="nav-link text-dark asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+            <div class="footer-item">
+                <p>Contact Us</p>
+                <a asp-area="" class="nav-link text-dark" asp-controller="Home" asp-action="ContactSupport">Contact Support</a>
+            </div>
+            <div class="footer-item">
+                <p>Our Email</p>
+                <p>ChujWDupie@gmail.com</p>
+            </div>
+            <div class="footer-item">
+                <a asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/Resources/Images/GithubIcon.png" class="SocialIcon align-self-end">
+                </a>
+            </div>
         </div>
         
     </footer>

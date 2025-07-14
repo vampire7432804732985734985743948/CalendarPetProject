@@ -9,7 +9,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<div id="overlay" class="overlay" style="display:none;"></div>
 <div class="body-background di">
     <p id="slogan" class="slogan-text base-slogan-degign"></p>
     <p id="sub-slogan" class="slogan-text base-slogan-degign">Stay organized, meet your goals, and take control of your time—all in one place.</p>
@@ -64,6 +63,7 @@
     </div>
 </div>
 
+<div id="overlay" class="overlay" style="display:none;"></div>
 <div id="card-description" class="description-box" style="display: none;">
     <div class="desc-content">
         <div class="desc-text m-4">
@@ -106,5 +106,5 @@
 <script src="~/js/GuestPage.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
 <script>
-    window.showDescriptionFromServer = @(ViewBag.ShowDescription == true ? "true" : "false");
+    window.showDescriptionFromServer = @(ViewBag.ShowDescription == true ? "true" : "false")
 </script>
