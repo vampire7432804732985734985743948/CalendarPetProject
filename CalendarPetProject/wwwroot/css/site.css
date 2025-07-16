@@ -101,6 +101,7 @@ body {
     align-self:center;
     align-content:center;
     align-items:center;
+    background-color:white;
 }
 .footer-item {
     display:flex;

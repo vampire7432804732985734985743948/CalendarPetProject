@@ -1,4 +1,5 @@
 ﻿using CalendarPetProject.Models;
+using CalendarPetProject.Models.CustomerSupport;
 using CalendarPetProject.ViewModels.AccountEnterance;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -16,5 +17,6 @@ namespace CalendarPetProject.Data
         {
         }
         public DbSet<Users> UsersSet { get; set; }
+        public DbSet<ContactSupportModel> ContactSupportCases { get; set; }
     }
 }
