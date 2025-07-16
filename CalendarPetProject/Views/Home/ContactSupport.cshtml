@@ -9,18 +9,19 @@
 <div class="SupportCard">
     <div class="FieldFlex">
     <div class="SupportField">
-        <p class="FieldText">EMail</p>
-        <input class="SupportInput" placeholder="Example@gmail.com">
+        <label asp-for="UserEmailAddress" class="form-label"></label>
+        <input class="SupportInput" asp-for="UserEmailAddress" placeholder="Example@gmail.com">
     </div>
 
     <div class="SupportField">
-            <p class="FieldText">Title</p>
-        <input class="SupportInput" placeholder="Title">
+        <label asp-for="RequestTitle" class="form-label"></label>
+        <input class="SupportInput"  asp-for="RequestTitle" placeholder="Title">
     </div>
 
     <div class="SupportField">
-            <p class="FieldText">Message</p>
-            <textarea placeholder="Type your message" class="SupportInputMessage"></textarea>
+        <label asp-for="RequestDescription" class="form-label"></label>
+        <textarea placeholder="Type your message" asp-for="RequestDescription" class="SupportInputMessage"></textarea>
         </div>
     </div>
+    <input type="submit" value="Login" class="btn btn-success w-100 p-2 float-start" />
 </div>
