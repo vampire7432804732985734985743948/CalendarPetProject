@@ -245,14 +245,48 @@ body.no-scroll {
     align-content: space-around;
     gap: 5EM;
 }
-.logo-image{
-    max-width:120px;
+.technology-slider-wrapper {
+    position: relative;
+    width: 100vw;              /* full screen width */
+    overflow: hidden;
+    margin: 0 auto;
 }
-.technology-used-container{
+
+.technology-used-container {
     display: flex;
-    gap: 10em;
-    align-content:space-around;
-    align-items:baseline;
+    gap: 5em;
+    padding: 1em;
+    transition: transform 0.4s ease;
+    /* Remove width constraint — let it grow naturally */
+}
+
+.logo-image {
+    max-width: 170px;
+    height: auto;
+    flex-shrink: 0;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0,0,0,0.5);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.left-btn {
+    left: 10px;
+}
+
+.right-btn {
+    right: 10px;
 }
 .video-banner {
     text-shadow:0px 0px 10px grey;

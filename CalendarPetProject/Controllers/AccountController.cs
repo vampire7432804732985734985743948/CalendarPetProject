@@ -62,6 +62,7 @@ namespace CalendarPetProject.Controllers
         public async Task<IActionResult> Register(RegisterViewModel registrationViewModel)
         {
             if (!ModelState.IsValid) return View(registrationViewModel);
+
             if (string.IsNullOrEmpty(registrationViewModel.Login) || !registrationViewModel.Login.Contains("@gmail.com")) return View(registrationViewModel);
 
             var user = new Users

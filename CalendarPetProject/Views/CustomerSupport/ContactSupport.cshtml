@@ -1,0 +1,42 @@
+﻿@using CalendarPetProject.ViewModels.Contact;
+@model ContactSupportViewModel;
+
+@{
+    ViewData["ContactSupport"] = "Contact Support";
+}
+<link rel="stylesheet" href="~/css/ContactSupport/SupportPage.css" asp-append-version="true" />
+
+<div class="submit-form-wrapper">
+    <div class="submit-form-content">
+        <div class="flex-column gap-0">
+            <h1>How can we help you?</h1>
+            <h4>Submit your request</h4>
+        </div>
+        <form asp-action="ContactSupport" asp-controller="CustomerSupport" method="post">
+            <div class="SupportCard">
+                <div class="FieldFlex">
+                    <div class="SupportField">
+                        <label asp-for="UserEmailAddress" class="form-label"></label>
+                        <input class="SupportInput" asp-for="UserEmailAddress" placeholder="Example@gmail.com">
+                        <span asp-validation-for="UserEmailAddress" class="text-danger"></span>
+                    </div>
+
+                    <div class="SupportField">
+                        <label asp-for="RequestTitle" class="form-label"></label>
+                        <input class="SupportInput" asp-for="RequestTitle" placeholder="Title">
+                    </div>
+
+                    <div class="SupportField">
+                        <label asp-for="RequestDescription" class="form-label"></label>
+                        <textarea placeholder="Type your message" asp-for="RequestDescription" class="SupportInputMessage"></textarea>
+                    </div>
+                </div>
+                <input type="submit" value="Submit" class="btn btn-success w-50 p-2 submit-button" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
