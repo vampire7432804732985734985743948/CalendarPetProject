@@ -1,4 +1,8 @@
-﻿@{
+﻿@using CalendarPetProject.ViewModels.AccountEnterance
+@model EmailContainerViewModel;
+
+
+@{
     ViewData["GuestView"] = "GuestView";
 }
 <link rel="stylesheet" href="~/css/guestPage.css" asp-append-version="true" />
@@ -15,9 +19,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=Fredoka:wght@300..700&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-<div class="body-background di">
+<div class="body-background">
     <p id="slogan" class="slogan-text base-slogan-degign"></p>
     <p id="sub-slogan" class="slogan-text base-slogan-degign">Stay organized, meet your goals, and take control of your time—all in one place.</p>
+
+</div>
+<div class="progress-container mt-5">
+    <div class="progress-bar" id="progressBar"></div>
 </div>
 
 <div class="guest-main-page-box d-flex align-items-center mt-5">
@@ -25,20 +33,21 @@
         <h1 style="font-size: 4rem;">Great schedule starts with <strong class="slogan-text">MiraiDays </strong> </h1>
         <h4>All the scheduling tools you need to enhance your productivity</h4>
     </div>
-    <div class="d-flex flex-column gap-3">
-        <div class="d-flex flex-column gap-1">
-            <label class="fredoka-font">Work email</label>
-            <input type="email" class="email-address-collector fredoka-font " placeholder="Type your email address"/>
-            <label class="font-small">Using a work email helps find teammates and boost collaboration.</label>
-
+    <form asp-controller="Account" asp-action="RedirectToRegister" method="post">
+        <div class="d-flex flex-column gap-3">
+            <div class="d-flex flex-column gap-1">
+                <label asp-for="Email" class="fredoka-font"></label>
+                <input type="email" asp-for="Email" class="email-address-collector fredoka-font" placeholder="Type your email address" required />
+                <label class="fredoka-font font-small">Using a work email helps find teammates and boost collaboration.</label>
+            </div>
+            <button type="submit" class="button">
+                <span class="button_lg">
+                    <span class="button_sl"></span>
+                    <span class="button_text">REGISTER NOW</span>
+                </span>
+            </button>
         </div>
-        <a class="button nav-link" asp-controller="Account" asp-action="Register">
-            <span class="button_lg">
-                <span class="button_sl"></span>
-                <span class="button_text">REGISTER NOW</span>
-            </span>
-        </a>
-    </div>
+    </form>
 </div>
 
 <div class="cards-container" data-aos="fade-up">

@@ -53,11 +53,25 @@ namespace CalendarPetProject.Controllers
         }
 
         [HttpGet]
-        public IActionResult Register()
+        public IActionResult Register(string email)
         {
-            return View();
-        }
+            var model = new RegisterViewModel
+            {
+                Login = email
+            };
 
+            return View(model);
+        }
+        [HttpPost]
+        public IActionResult RedirectToRegister(EmailContainerViewModel emailContainerViewModel)
+        {
+            if (emailContainerViewModel == null || string.IsNullOrEmpty(emailContainerViewModel.Email))
+            {
+                return RedirectToAction("GuestView");
+            }
+
+            return RedirectToAction("Register", new { email = emailContainerViewModel.Email });
+        }
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registrationViewModel)
         {

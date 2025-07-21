@@ -24,10 +24,22 @@
 
     let index = 0;
     const slider = document.getElementsByClassName("body-background")[0];
+    const animationDuration = 10000; //ms
     function SelectRandomElement(numberOfElements) {
         return Math.floor(Math.random() * numberOfElements);
     }
+    function fillProgress(durationInMs) {
+        const progressBar = document.getElementById('progressBar');
+
+        progressBar.style.transition = 'none';
+        progressBar.style.width = '0%';
+
+        void progressBar.offsetWidth;
+        progressBar.style.transition = `width ${durationInMs}ms linear`;
+        progressBar.style.width = '100%';
+    }
     function UpdateBackground() {
+        fillProgress(animationDuration);
         slider.style.backgroundImage = images[SelectRandomElement(images.length)];
     }
 
@@ -69,8 +81,8 @@
 
     UpdateBackground();
     SelectSlogan();
-    setInterval(SelectSlogan, 10000);
-    setInterval(UpdateBackground, 10000);
+    setInterval(SelectSlogan, animationDuration);
+    setInterval(UpdateBackground, animationDuration);
 
     var cards = document.getElementsByClassName("card");
 
@@ -134,7 +146,7 @@
     const btnRight = document.querySelector('.right-btn');
 
     let scrollAmount = 0;
-    const scrollStep = 170 + 80; // Approximate width of one image + gap, tweak as needed
+    const scrollStep = 170 + 80;
 
     btnLeft.addEventListener('click', () => {
         scrollAmount -= scrollStep;
