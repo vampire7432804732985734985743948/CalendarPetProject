@@ -95,12 +95,9 @@ body {
 .footer-block{
     display:flex;
     flex-direction:row;
-    padding:0px;
+    padding:20px;
     margin:0px;
     gap:3em;
-    align-self:center;
-    align-content:center;
-    align-items:center;
     background-color:white;
 }
 .footer-item {
@@ -108,4 +105,22 @@ body {
     flex-direction:column;
     padding:0px;
     margin:0px;
+}
+.project-email-address {
+    color: #2c7e3d;
+    cursor: pointer;
+    text-decoration:underline;
+}
+.icon-container{
+    display:flex;
+    flex-direction:row;
+    gap: 1em;
+}
+.icon-container img{
+    max-width: 35px;
+    transition: 0.3s;
+}
+.icon-container img:hover {
+    transition: 0.1s;
+    transform: scale(1.1);
 }
