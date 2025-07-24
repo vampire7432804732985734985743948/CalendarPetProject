@@ -107,9 +107,18 @@ body {
     margin:0px;
 }
 .project-email-address {
+    padding:0px;
+    margin:0px;
     color: #2c7e3d;
     cursor: pointer;
     text-decoration:underline;
+    transition:0.2s;
+    border: 0px;
+    background-color:transparent;
+}
+.project-email-address:hover {
+    color: #1d5429;
+    transition:0.2s;
 }
 .icon-container{
     display:flex;
