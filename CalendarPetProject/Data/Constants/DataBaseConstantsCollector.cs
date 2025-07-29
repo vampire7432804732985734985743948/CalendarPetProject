@@ -1,8 +1,10 @@
-﻿namespace CalendarPetProject.Data.Constants
+﻿using System;
+using CalendarPetProject.BusinessLogic.JSONParse;
+
+namespace CalendarPetProject.Data.Constants
 {
-    public static class DataBaseConstantsCollector
+    public class DataBaseConstantsCollector
     {
-        public readonly static string DBConnectionString = "Data Source=DESKTOP-M2458CE\\SQLEXPRESS;Initial Catalog=CalendarDb;Integrated Security=True;Trust Server Certificate=True";
-     
+        public string? DBConnectionString { get; set; }
     }
 }
