@@ -5,12 +5,16 @@ using CalendarPetProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using CalendarPetProject.Data.Constants;
+using System.Text.Json;
+using CalendarPetProject.BusinessLogic.JSONParse;
 
 var builder = WebApplication.CreateBuilder(args);
+DataBaseConstantsCollector constantsCollector = JsonSerializer.Deserialize<DataBaseConstantsCollector>(JSONSerializer.GetData());
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(DataBaseConstantsCollector.DBConnectionString));
+    options.UseSqlServer(constantsCollector.DBConnectionString));
+
 builder.Services.AddIdentity<Users, IdentityRole>(options =>
     {
         options.Password.RequireNonAlphanumeric = true;
