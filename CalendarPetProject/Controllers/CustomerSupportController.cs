@@ -35,7 +35,7 @@ namespace CalendarPetProject.Controllers
                 RequestTitle = contactSupportViewModel.RequestTitle,
                 UserEmailAddress = contactSupportViewModel.UserEmailAddress,
                 RequestDescription = contactSupportViewModel.RequestDescription,
-
+                Category = contactSupportViewModel.Category,
             };
             _appDbContext.ContactSupportCases.Add(contactSupportForm);
             _appDbContext.SaveChanges();

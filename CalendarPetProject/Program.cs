@@ -22,7 +22,6 @@ builder.Services.AddIdentity<Users, IdentityRole>(options =>
         options.Password.RequireLowercase = true;
         options.Password.RequireUppercase = true;
         options.Password.RequiredLength = 5;
-        // options.User.RequireUniqueEmail = true;
         options.SignIn.RequireConfirmedEmail = false;
         options.SignIn.RequireConfirmedPhoneNumber = false;
         options.SignIn.RequireConfirmedAccount = false;

@@ -16,6 +16,18 @@
             <div class="SupportCard">
                 <div class="FieldFlex">
                     <div class="SupportField">
+                        <label asp-for="Category">Choose a problem category:</label>
+                        <select class="SupportInput" name="category" asp-for="Category">
+                            <option value="ReportBug">Report a bug</option>
+                            <option value="PaymentIssue">Payment issue</option>
+                            <option value="TechnicalIssues">Technical issues</option>
+                            <option value="FoodDatabaseIssues">Food database issues</option>
+                            <option value="Localization">Language & Localization</option>
+                            <option value="Privacy">Privacy & Account</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="SupportField">
                         <label asp-for="UserEmailAddress" class="form-label"></label>
                         <input class="SupportInput" asp-for="UserEmailAddress" placeholder="Example@gmail.com">
                         <span asp-validation-for="UserEmailAddress" class="text-danger"></span>

@@ -28,7 +28,10 @@ namespace CalendarPetProject.Controllers
                 return View(loginViewModel);
 
             var user = await _userManager.FindByEmailAsync(loginViewModel.Login);
-
+            if (user == null)
+            {
+                return View(loginViewModel);
+            }
             var result = await _signInManager.PasswordSignInAsync(
                 user.UserName!,
                 loginViewModel.Password,
