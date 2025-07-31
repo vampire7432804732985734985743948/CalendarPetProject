@@ -39,14 +39,13 @@ namespace CalendarPetProject.BusinessLogic.JSONParse
         }
         public static string GetData()
         {
-            string readingFilePath = Path.Combine(FolderPath, FileName);
 
-            if (string.IsNullOrEmpty(readingFilePath) || !File.Exists(readingFilePath))
+            if (string.IsNullOrEmpty(FilePath) || !File.Exists(FilePath))
             {
                 throw new ArgumentException("There is no such file or directory");
             }
 
-            var jsonString = File.ReadAllText(readingFilePath);
+            var jsonString = File.ReadAllText(FilePath);
             if (string.IsNullOrWhiteSpace(jsonString))
             {
                 throw new ArgumentException("File is empty");

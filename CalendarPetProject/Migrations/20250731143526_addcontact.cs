@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CalendarPetProject.Migrations
 {
     /// <inheritdoc />
-    public partial class InitailMigration : Migration
+    public partial class addcontact : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,6 +51,22 @@ namespace CalendarPetProject.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ContactSupportCases",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserEmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RequestTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    RequestDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ContactSupportCases", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -216,6 +232,9 @@ namespace CalendarPetProject.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "ContactSupportCases");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -19,9 +19,14 @@ namespace CalendarPetProject.ViewModels.Contact
         [Display(Name = "Title")]
         public string RequestTitle { get; set; } = string.Empty;
 
-        [Required(ErrorMessage = "Description is reqired")]
         [Display(Name = "Description")]
         public string RequestDescription { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Category is reqired")]
+        [Display(Name = "Choose a problem category:")]
+        public string Category { get; set; } = string.Empty;
+
+
 
     }
 }
