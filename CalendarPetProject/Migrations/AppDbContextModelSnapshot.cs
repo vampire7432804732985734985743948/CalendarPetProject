@@ -30,11 +30,21 @@ namespace CalendarPetProject.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CaseClosingTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CaseSubmitionTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RequestDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RequestStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

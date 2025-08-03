@@ -36,6 +36,8 @@ namespace CalendarPetProject.Controllers
                 UserEmailAddress = contactSupportViewModel.UserEmailAddress,
                 RequestDescription = contactSupportViewModel.RequestDescription,
                 Category = contactSupportViewModel.Category,
+                RequestStatus = "Opened",
+                CaseSubmitionTime = DateTime.Now,
             };
             _appDbContext.ContactSupportCases.Add(contactSupportForm);
             _appDbContext.SaveChanges();
