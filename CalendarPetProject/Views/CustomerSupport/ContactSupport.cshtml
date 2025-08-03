@@ -1,4 +1,5 @@
 ﻿@using CalendarPetProject.ViewModels.Contact;
+@using CalendarPetProject.Data.FilterData;
 @model ContactSupportViewModel;
 
 @{
@@ -18,13 +19,12 @@
                     <div class="SupportField">
                         <label asp-for="Category">Choose a problem category:</label>
                         <select class="SupportInput" name="category" asp-for="Category">
-                            <option value="ReportBug">Report a bug</option>
-                            <option value="PaymentIssue">Payment issue</option>
-                            <option value="TechnicalIssues">Technical issues</option>
-                            <option value="FoodDatabaseIssues">Food database issues</option>
-                            <option value="Localization">Language & Localization</option>
-                            <option value="Privacy">Privacy & Account</option>
-                            <option value="Other">Other</option>
+                            <option value="@Category.ReportBug">@Category.ReportBug</option>
+                            <option value="@Category.PaymentIssue">@Category.PaymentIssue</option>
+                            <option value="@Category.TechnicalIssues">@Category.TechnicalIssues</option>
+                            <option value="@Category.FoodDatabaseIssues">@Category.FoodDatabaseIssues</option>
+                            <option value="@Category.Privacy">@Category.Privacy</option>
+                            <option value="@Category.Other">@Category.Other</option>
                         </select>
                     </div>
                     <div class="SupportField">

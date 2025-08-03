@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CalendarPetProject.Migrations
 {
     /// <inheritdoc />
-    public partial class addcontact : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -62,7 +62,10 @@ namespace CalendarPetProject.Migrations
                     UserEmailAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RequestTitle = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     RequestDescription = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CaseSubmitionTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CaseClosingTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    RequestStatus = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
