@@ -1,0 +1,58 @@
+﻿@using CalendarPetProject.ViewModels.Contact;
+@model AIContactSupportViewModel;
+
+@{
+    ViewData["ContactSupport"] = "AI Contact Support";
+}
+
+<form asp-action="GetAIResponse" asp-controller="AITextGenerative">
+    <div id="chat-box" style="border:1px solid #ccc; padding:10px; height:300px; overflow-y:auto;">
+
+    </div>
+    <input asp-for="@Model.UserPrompt" class="user-prompt" type="text" id="user-input" placeholder="Type your message here..." />
+    <input type="button" id="send" value="Submit" />
+</form>
+
+
+<script>
+    const chatBox = document.getElementById('chat-box');
+    const sendBtn = document.getElementById('send');
+    const userInput = document.getElementById('user-input');
+    const form = document.querySelector('form');
+
+    form.addEventListener('submit', e => e.preventDefault());
+
+    sendBtn.addEventListener('click', async () => {
+        const message = userInput.value.trim();
+        if (!message) return;
+
+        addMessage('User', message);
+
+        userInput.value = '';
+
+        try {
+            const response = await fetch('/AITextGenerative/GetAIResponse', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ UserPrompt: message }) 
+            });
+
+            if (!response.ok) throw new Error('Network error');
+
+            const data = await response.json();
+
+            addMessage('AI', data.response);
+        } catch (err) {
+            addMessage('System', 'Error getting AI response: ' + err.message);
+        }
+    });
+    function addMessage(sender, text) {
+        const messageElem = document.createElement('div');
+        messageElem.classList.add('chat-message');
+        const formattedText = text.replace(/\n/g, '<br>');
+        messageElem.innerHTML = `<strong>${sender}:</strong> ${formattedText}`;
+        chatBox.appendChild(messageElem);
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+</script>
