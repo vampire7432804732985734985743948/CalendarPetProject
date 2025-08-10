@@ -43,7 +43,10 @@
                         <textarea placeholder="Type your message" asp-for="RequestDescription" class="SupportInputMessage"></textarea>
                     </div>
                 </div>
-                <input type="submit" value="Submit" class="btn btn-success w-50 p-2 submit-button" />
+                <div class="w-100 d-flex flex-row gap-5">
+                    <input type="submit" value="Submit" class="btn btn-success w-50 p-2 submit-button" />
+                    <a asp-action="AIContactSupport" asp-controller="AITextGenerative" class="use-ai-contact-support">Use AI instead</a>
+                </div>
             </div>
         </form>
     </div>

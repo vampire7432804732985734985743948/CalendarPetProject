@@ -33,7 +33,11 @@ builder.Services.AddIdentity<Users, IdentityRole>(options =>
     }
 ).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
-
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = null; // or adjust naming if needed
+    });
 builder.Services.AddTransient<GeminiDelegatingHandler>();
 
 builder.Services.AddHttpClient<GeminiClient>(client =>
@@ -42,23 +46,6 @@ builder.Services.AddHttpClient<GeminiClient>(client =>
 })
 .AddHttpMessageHandler<GeminiDelegatingHandler>();
 var app = builder.Build();
-using (var scope = app.Services.CreateScope())
-{
-    var geminiClient = scope.ServiceProvider.GetRequiredService<GeminiClient>();
-
-    string prompt = "How to integrate you to the asp.net project";
-
-    try
-    {
-        var result = await geminiClient.GenerateContentAsync(prompt, CancellationToken.None);
-        Console.WriteLine("Gemini response:");
-        Console.WriteLine(result);
-    }
-    catch (Exception ex)
-    {
-        Console.WriteLine($"Error calling Gemini: {ex.Message}");
-    }
-}
 
 if (!app.Environment.IsDevelopment())
 {

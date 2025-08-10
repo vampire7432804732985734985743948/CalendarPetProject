@@ -1,11 +1,13 @@
 ﻿using CalendarPetProject.BusinessLogic.AITextGenerative;
+using CalendarPetProject.ViewModels.Contact;
 using Microsoft.AspNetCore.Mvc;
+using System.Text;
 
 namespace CalendarPetProject.Controllers
 {
     public class AITextGenerativeController : Controller
     {
-        private GeminiClient _geminiClient;
+        private readonly GeminiClient _geminiClient;
 
         public AITextGenerativeController(GeminiClient geminiClient)
         {
@@ -13,16 +15,30 @@ namespace CalendarPetProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Ask(string prompt)
+        public async Task<IActionResult> GetAIResponse([FromBody] AIContactSupportViewModel aIContactSupportView)
         {
-            if (string.IsNullOrWhiteSpace(prompt))
+            if (string.IsNullOrWhiteSpace(aIContactSupportView.UserPrompt))
                 return View("Index");
 
-            var result = await _geminiClient.GenerateContentAsync(prompt, CancellationToken.None);
+            try
+            {
+                var result = await _geminiClient.GenerateContentAsync(aIContactSupportView.UserPrompt, CancellationToken.None);
+                return Json(new {response = result});
+            }
+            catch (Exception ex)
+            {
+                return Json(new {response = new StringBuilder($"Sorry, there is an error. Please contact us via customer support form. Error message: {ex}")});
+            }
+            
+        }
 
-            ViewBag.Answer = result;
-
-            return View("Index");
+        public IActionResult AIContactSupport()
+        {
+            return View();
+        }
+        public IActionResult Index()
+        {
+            return View();
         }
     }
 }

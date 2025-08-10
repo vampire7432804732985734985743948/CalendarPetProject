@@ -70,3 +70,13 @@
 .FieldText {
     margin-right: 10px;
 }
+.use-ai-contact-support {
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    background-color: #3e8ae0;
+    color: white;
+    padding: 5px;
+    border-radius:7px;
+    width:50%;
+}
