@@ -92,13 +92,18 @@ body {
     max-height: 50px;
     float:right;
 }
-.footer-block{
-    display:flex;
-    flex-direction:row;
-    padding:20px;
-    margin:0px;
-    gap:3em;
-    background-color:white;
+.footer-block {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    align-self: end;
+    display: flex;
+    flex-direction: row;
+    padding: 20px;
+    margin: 0px;
+    gap: 3em;
+    background-color: white;
 }
 .footer-item {
     display:flex;
