@@ -1,19 +1,24 @@
-using System;
+using CalendarPetProject.BusinessLogic.AITextGenerative;
+using CalendarPetProject.BusinessLogic.JSONParse;
 using CalendarPetProject.Data;
-using CalendarPetProject.CalendarDBContext.DataBaseOperationService;
+using CalendarPetProject.Data.Constants;
+using CalendarPetProject.Data.Constants.FileNames;
 using CalendarPetProject.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using CalendarPetProject.Data.Constants;
-using System.Text.Json;
-using CalendarPetProject.BusinessLogic.JSONParse;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http.Headers;
 
 var builder = WebApplication.CreateBuilder(args);
-DataBaseConstantsCollector constantsCollector = JsonSerializer.Deserialize<DataBaseConstantsCollector>(JSONSerializer.GetData());
+string dbConnectionStringFileName = FileNames.DbConnectionStringFileName;
+string apiContainerFileName = FileNames.ApiKeyFileName;
+
+DataBaseConnectionString dbConnectionString = JSONSerializer.GetData<DataBaseConnectionString>(dbConnectionStringFileName);
+ApiKeys apiKeys = JSONSerializer.GetData<ApiKeys>(apiContainerFileName);
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(constantsCollector.DBConnectionString));
+    options.UseSqlServer(dbConnectionString.DBConnectionString));
 
 builder.Services.AddIdentity<Users, IdentityRole>(options =>
     {
@@ -28,8 +33,32 @@ builder.Services.AddIdentity<Users, IdentityRole>(options =>
     }
 ).AddEntityFrameworkStores<AppDbContext>().AddDefaultTokenProviders();
 
-var app = builder.Build();
 
+builder.Services.AddTransient<GeminiDelegatingHandler>();
+
+builder.Services.AddHttpClient<GeminiClient>(client =>
+{
+    client.BaseAddress = new Uri("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent");
+})
+.AddHttpMessageHandler<GeminiDelegatingHandler>();
+var app = builder.Build();
+using (var scope = app.Services.CreateScope())
+{
+    var geminiClient = scope.ServiceProvider.GetRequiredService<GeminiClient>();
+
+    string prompt = "How to integrate you to the asp.net project";
+
+    try
+    {
+        var result = await geminiClient.GenerateContentAsync(prompt, CancellationToken.None);
+        Console.WriteLine("Gemini response:");
+        Console.WriteLine(result);
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine($"Error calling Gemini: {ex.Message}");
+    }
+}
 
 if (!app.Environment.IsDevelopment())
 {
@@ -47,5 +76,4 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 app.Run();

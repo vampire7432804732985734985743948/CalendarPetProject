@@ -3,7 +3,7 @@ using CalendarPetProject.BusinessLogic.JSONParse;
 
 namespace CalendarPetProject.Data.Constants
 {
-    public class DataBaseConstantsCollector
+    public class DataBaseConnectionString
     {
         public string? DBConnectionString { get; set; }
     }
