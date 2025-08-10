@@ -10,9 +10,7 @@ namespace CalendarPetProject.BusinessLogic.JSONParse
     internal static class JSONSerializer
     {
         static readonly public string FolderName = "SystemConstants";
-        static readonly public string FileName = "SystemConstantsContainer.json";
         static readonly string FolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), FolderName);
-        static public string FilePath = Path.Combine(FolderPath, FileName);
 
         private static string SerializeData<T>(T data)
         {
@@ -22,8 +20,10 @@ namespace CalendarPetProject.BusinessLogic.JSONParse
             });
             return serializedObject.ToString();
         }
-        public static void SaveAllData<T>(T data)
+        public static void SaveAllData<T>(T data, string fileName)
         {
+            string FilePath = Path.Combine(FolderPath, fileName);
+
             if (data != null)
             {
                 Directory.CreateDirectory(FolderPath);
@@ -37,8 +37,9 @@ namespace CalendarPetProject.BusinessLogic.JSONParse
                 Console.WriteLine("The data are empty");
             }
         }
-        public static string GetData()
+        public static T GetData<T>(string fileName)
         {
+            string FilePath = Path.Combine(FolderPath, fileName);
 
             if (string.IsNullOrEmpty(FilePath) || !File.Exists(FilePath))
             {
@@ -50,7 +51,14 @@ namespace CalendarPetProject.BusinessLogic.JSONParse
             {
                 throw new ArgumentException("File is empty");
             }
-            return jsonString;
+
+            var result = JsonSerializer.Deserialize<T>(jsonString);
+            if (result == null)
+            {
+                throw new InvalidOperationException("Failed to deserialize JSON to the requested type");
+            }
+
+            return result;
         }
 
     }
