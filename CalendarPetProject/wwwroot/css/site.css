@@ -80,7 +80,11 @@ body {
     .privacy-module{
         flex-direction:column;
     }
+    .footer-block {
+        flex-direction: column;
+    }
 }
+
 .HeaderLogo{
     max-width:50px;
     max-height:50px;
@@ -93,17 +97,22 @@ body {
     float:right;
 }
 .footer-block {
-    position: fixed;
+    flex-wrap: wrap;
     bottom: 0;
     left: 0;
     width: 100%;
-    align-self: end;
+    align-self: flex-end;
     display: flex;
     flex-direction: row;
     padding: 20px;
     margin: 0px;
     gap: 3em;
     background-color: white;
+    position:fixed;
+}
+.footer-block.hidden {
+    transform: translateY(100%);
+    opacity: 0;
 }
 .footer-item {
     display:flex;
@@ -134,7 +143,24 @@ body {
     max-width: 35px;
     transition: 0.3s;
 }
-.icon-container img:hover {
+.content{
+    flex:1;
+}
+.toggle-footer {
+    border-radius: 100px;
+    width: 55px;
+    height: 55px;
+    font-size: 20px;
+    font-weight: 600;
+    border: 0px;
+    background-color: #e7e7e7;
+    right: 20px;
+    position: fixed;
+    box-shadow: 0px 0px 10px #8a8a8a;
+    transition:0.1s;
+}
+.toggle-footer:hover {
     transition: 0.1s;
     transform: scale(1.1);
+    background-color: #e6e6e6;
 }
