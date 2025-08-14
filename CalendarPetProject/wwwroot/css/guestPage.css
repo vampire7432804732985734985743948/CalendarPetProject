@@ -30,12 +30,62 @@ body.no-scroll {
     font-weight: 500;
     font-style: normal;
 }
-
+.cards-container ::-webkit-scrollbar {
+    display: none;
+}
+.card {
+    flex: 0 0 auto;
+}
 .card-description {
     font-family: "Work Sans", sans-serif;
     font-optical-sizing: auto;
     font-weight: 400;
     font-style: normal;
+}
+.card-image {
+    width: 100%;
+    border-radius: 10px;
+    transition: filter 0.4s ease;
+    margin: 0px;
+    padding: 0px;
+}
+
+.card {
+    position: relative;
+    padding-top: 20px;
+    width: 270px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    padding-left: 30px;
+    margin: 5px;
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+        transition: 0.3s;
+        box-shadow: 0px 10px 30px #9a9a9a;
+    }
+
+.card-name {
+    font-size: 12px;
+}
+
+.cards-container {
+    display: flex;
+    flex-direction: row;
+    width: 100dvw;
+    padding: 100px;
+    margin: 0px;
+    margin-left: calc(-50vw + 50%);
+    margin-top: 50px;
+    align-content: space-around;
+    gap: 5em;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
 }
 .guest-main-page-box {
     display: flex;
@@ -258,45 +308,7 @@ body.no-scroll {
         width: 80%;
     }
 }
-.card-image {
-    width: 100%;
-    border-radius: 10px;
-    transition: filter 0.4s ease;
-    margin:0px;
-    padding:0px;
 
-}
-.card{
-    position:relative;
-    padding-top:20px;
-    width: 500px;
-    border-radius: 15px;
-    cursor:pointer;
-    transition:0.3s;
-    display:flex;
-    flex-direction:column;
-    padding-left:30px;
-    margin:0px;
-}
-.card:hover {
-    transform: translateY(-10px);
-    transition: 0.3s;
-    box-shadow: 0px 10px 30px #9a9a9a;
-}
-.card-name{
-    font-size:12px;
-}
-.cards-container {
-    display: flex;
-    flex-direction: row;
-    width: 100dvw;
-    padding: 100px;
-    margin: 0px;
-    margin-left: calc(-50vw + 50%);
-    margin-top: 50px;
-    align-content: space-around;
-    gap: 5em;
-}
 .technology-slider-wrapper {
     position: relative;
     max-width: 100vw;
@@ -317,13 +329,6 @@ body.no-scroll {
 .logo-image {
     max-width: 120px;
     filter: grayscale(100%);
-
-
-
-
-
-
-
 }
 
 .slider-btn {
