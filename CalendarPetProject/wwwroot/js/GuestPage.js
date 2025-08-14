@@ -128,7 +128,7 @@
                 return response.json();
             })
             .then(data => {
-                showDescription(data.title, data.description, data.imagePath);
+                showDescription(data.Title, data.Description, data.ImagePath);
             })
             .catch(error => {
                 console.error("Error fetching card details:", error);
