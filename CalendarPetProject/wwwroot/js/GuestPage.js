@@ -128,7 +128,7 @@
                 return response.json();
             })
             .then(data => {
-                showDescription(data.title, data.description, data.imagePath);
+                showDescription(data.Title, data.Description, data.ImagePath);
             })
             .catch(error => {
                 console.error("Error fetching card details:", error);
@@ -139,25 +139,5 @@
             const id = card.getAttribute('data-id');
             fetchCardDetails(id);
         });
-    });
-
-    const container = document.querySelector('.technology-used-container');
-    const btnLeft = document.querySelector('.left-btn');
-    const btnRight = document.querySelector('.right-btn');
-
-    let scrollAmount = 0;
-    const scrollStep = 170 + 80;
-
-    btnLeft.addEventListener('click', () => {
-        scrollAmount -= scrollStep;
-        if (scrollAmount < 0) scrollAmount = 0;
-        container.style.transform = `translateX(-${scrollAmount}px)`;
-    });
-
-    btnRight.addEventListener('click', () => {
-        const maxScroll = container.scrollWidth - container.parentElement.clientWidth;
-        scrollAmount += scrollStep;
-        if (scrollAmount > maxScroll) scrollAmount = maxScroll;
-        container.style.transform = `translateX(-${scrollAmount}px)`;
     });
 });
