@@ -125,6 +125,7 @@ See the [LICENSE](./LICENSE) file for details.
 ## 💬 Contact & Support
 
 - Privacy Policy: see the Privacy page in the app
+- ![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1958).png)
 - Contact Support: use the "Contact Support" link in the footer
 - Email: ChujWDupie@gmail.com (demo email, replace with your own)
 
