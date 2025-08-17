@@ -121,13 +121,21 @@ This project is licensed under the [Creative Commons Attribution-NonCommercial 4
 See the [LICENSE](./LICENSE) file for details.
 
 ---
-
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1958).png)
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1959).png)
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1960).png)
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1961).png)
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1962).png)
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1963).png)
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1964).png)
 ## 💬 Contact & Support
 
 - Privacy Policy: see the Privacy page in the app
-- ![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1958).png)
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1965).png)
 - Contact Support: use the "Contact Support" link in the footer
-- Email: ChujWDupie@gmail.com (demo email, replace with your own)
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1966).png)
+![image alt](https://github.com/vampire7432804732985734985743948/CalendarPetProject/blob/master/CalendarPetProject/wwwroot/Resources/Images/ApplicationScreenshotsReadMe/Screenshot%20(1967).png)
+- Email: MiraiDays@gmail.com
 
 ---
 
