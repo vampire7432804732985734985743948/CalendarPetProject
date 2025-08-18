@@ -106,8 +106,6 @@ namespace CalendarPetProject.Controllers
                 foreach (var error in result.Errors)
                     ModelState.AddModelError(string.Empty, error.Description);
             }
-
-
             return View(registrationViewModel);
         }
 
@@ -140,7 +138,7 @@ namespace CalendarPetProject.Controllers
             _appDbContext.CustomerBodyParameters.Add(customerBodyParametersModel);
             _appDbContext.SaveChanges();
 
-            return RedirectToAction("Index", "Home");
+            return View("Index", "Home");
 
 
         }
