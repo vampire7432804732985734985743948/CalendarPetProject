@@ -33,6 +33,10 @@ namespace CalendarPetProject.BusinessLogic.AddCustomerPhysicalParameters
 
             return Convert.ToInt32(MINIMAL_BODY_LIFE_SUPPORT_EXPENDITURE + (muscleWeight * ENERGY_COMSUMPTION_COEFFICIENT));
         }
-        public double CalculateFFM() => _customerBodyParameters.Weight * (1 - (_customerBodyParameters.FatPercentage / 100));
+        public double CalculateFFM()
+        {
+            double result = _customerBodyParameters.Weight * (1 - (_customerBodyParameters.FatPercentage / 100.0));
+            return result;
+        }
     }
 }
