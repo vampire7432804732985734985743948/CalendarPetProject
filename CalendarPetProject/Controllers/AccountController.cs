@@ -1,5 +1,9 @@
-﻿using CalendarPetProject.Models;
+﻿using CalendarPetProject.BusinessLogic.AddCustomerPhysicalParameters;
+using CalendarPetProject.Data;
+using CalendarPetProject.Models;
+using CalendarPetProject.Models.CustomerData;
 using CalendarPetProject.ViewModels.AccountEnterance;
+using CalendarPetProject.ViewModels.CustomerData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,13 +11,15 @@ namespace CalendarPetProject.Controllers
 {
     public class AccountController : Controller
     {
+        AppDbContext _appDbContext;
         private readonly SignInManager<Users> _signInManager;
         private readonly UserManager<Users> _userManager;
 
-        public AccountController(SignInManager<Users> signInManager, UserManager<Users> userManager)
+        public AccountController(SignInManager<Users> signInManager, UserManager<Users> userManager, AppDbContext appDbContext)
         {
             _signInManager = signInManager;
             _userManager = userManager;
+            _appDbContext = appDbContext;
         }
         [HttpGet]
         public IActionResult Login()
@@ -100,9 +106,41 @@ namespace CalendarPetProject.Controllers
                 foreach (var error in result.Errors)
                     ModelState.AddModelError(string.Empty, error.Description);
             }
-
-
             return View(registrationViewModel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditCustomerParameters(CustomerBodyParametersViewModel customerParameters)
+        {
+            if (!ModelState.IsValid) return View();
+
+            var user = await _userManager.GetUserAsync(User);
+
+            CustomerPhysicalParameters customerPhysicalParameters = new CustomerPhysicalParameters(customerParameters);
+            if (user == null)
+            {
+                return View(customerPhysicalParameters);
+            }
+
+            CustomerBodyParametersModel customerBodyParametersModel = new CustomerBodyParametersModel()
+            { 
+                UserId = user.Id,
+                Height = customerParameters.Height,
+                Weight = customerParameters.Weight,
+                FatPercentage = customerParameters.FatPercentage,
+                PhysicalActivityLevel = customerParameters.PhysicalActivityLevel,
+                ActivityCoefficient = customerPhysicalParameters.GetAclivityCoefficient(),
+                FFM = customerPhysicalParameters.CalculateFFM(),
+                BMR = customerPhysicalParameters.CalculateBMR(),
+                TDEE = customerPhysicalParameters.CalculateTDEE()
+            };
+
+            _appDbContext.CustomerBodyParameters.Add(customerBodyParametersModel);
+            _appDbContext.SaveChanges();
+
+            return View("Index", "Home");
+
+
         }
     }
     
