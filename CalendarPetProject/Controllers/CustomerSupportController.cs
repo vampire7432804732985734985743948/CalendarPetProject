@@ -1,10 +1,7 @@
 ﻿using CalendarPetProject.Data;
-using CalendarPetProject.Models;
 using CalendarPetProject.Models.CustomerSupport;
 using CalendarPetProject.ViewModels.Contact;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
 
 namespace CalendarPetProject.Controllers
 {
@@ -25,8 +22,8 @@ namespace CalendarPetProject.Controllers
         [HttpPost]
         public IActionResult ContactSupport(ContactSupportViewModel contactSupportViewModel)
         {
-            if (!ModelState.IsValid) 
-            { 
+            if (!ModelState.IsValid)
+            {
                 return View(contactSupportViewModel);
             }
 
@@ -41,7 +38,7 @@ namespace CalendarPetProject.Controllers
             };
             _appDbContext.ContactSupportCases.Add(contactSupportForm);
             _appDbContext.SaveChanges();
-            
+
             return View("ThanksForSupportRequest");
         }
     }

@@ -10,14 +10,14 @@ namespace CalendarPetProject.ViewModels.AccountEnterance
 
         [Required(ErrorMessage = "Password is reqired")]
         [DataType(DataType.Password)]
-        [StringLength(50, MinimumLength = 8, ErrorMessage = "Write normal password!!!")]
+        [StringLength(50, MinimumLength = 8, ErrorMessage = "Write normal password!")]
         [Compare("ConfirmPassword", ErrorMessage = "Password does't match")]
         public string Password { get; set; } = string.Empty;
 
         [Display(Name = "Corfirm password")]
 
         [Required(ErrorMessage = "Password is reqired")]
-        [StringLength(50, MinimumLength = 8, ErrorMessage = "Write normal password kurwa!!!")]
+        [StringLength(50, MinimumLength = 8, ErrorMessage = "Write normal password!")]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; } = string.Empty;
 
