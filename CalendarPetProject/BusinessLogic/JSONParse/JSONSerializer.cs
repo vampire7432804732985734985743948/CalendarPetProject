@@ -1,13 +1,8 @@
-﻿using System;
-using System.IO;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using CalendarPetProject.Data.Constants;
+﻿using System.Text.Json;
 
 namespace CalendarPetProject.BusinessLogic.JSONParse
 {
-    internal static class JSONSerializer
+    public static class JSONSerializer
     {
         static readonly public string FolderName = "SystemConstants";
         static readonly string FolderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), FolderName);
@@ -53,12 +48,7 @@ namespace CalendarPetProject.BusinessLogic.JSONParse
             }
 
             var result = JsonSerializer.Deserialize<T>(jsonString);
-            if (result == null)
-            {
-                throw new InvalidOperationException("Failed to deserialize JSON to the requested type");
-            }
-
-            return result;
+            return result == null ? throw new InvalidOperationException("Failed to deserialize JSON to the requested type") : result;
         }
 
     }

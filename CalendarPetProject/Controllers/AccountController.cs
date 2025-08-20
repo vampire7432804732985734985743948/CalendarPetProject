@@ -1,4 +1,5 @@
 ﻿using CalendarPetProject.BusinessLogic.AddCustomerPhysicalParameters;
+using CalendarPetProject.BusinessLogic.Security.Password;
 using CalendarPetProject.Data;
 using CalendarPetProject.Models;
 using CalendarPetProject.Models.CustomerData;
@@ -11,9 +12,10 @@ namespace CalendarPetProject.Controllers
 {
     public class AccountController : Controller
     {
-        AppDbContext _appDbContext;
+        private readonly AppDbContext _appDbContext;
         private readonly SignInManager<Users> _signInManager;
         private readonly UserManager<Users> _userManager;
+        private const int PASSWORD_LENGTH = 32;
 
         public AccountController(SignInManager<Users> signInManager, UserManager<Users> userManager, AppDbContext appDbContext)
         {
@@ -82,11 +84,22 @@ namespace CalendarPetProject.Controllers
             return RedirectToAction("Register", new { email = emailContainerViewModel.Email });
         }
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel registrationViewModel)
+        public async Task<IActionResult> Register(RegisterViewModel registrationViewModel, string action)
         {
+            if (action == "generatePassword")
+            {
+                string generatedPassword = new PasswordGenerator().GeneratePassword(PASSWORD_LENGTH);
+                ViewBag.GeneratedPassword = generatedPassword;
+                registrationViewModel.Password = generatedPassword;
+                registrationViewModel.ConfirmPassword = generatedPassword;
+
+                return View(registrationViewModel);
+            }
+
             if (!ModelState.IsValid) return View(registrationViewModel);
 
-            if (string.IsNullOrEmpty(registrationViewModel.Login) || !registrationViewModel.Login.Contains("@gmail.com")) return View(registrationViewModel);
+            if (string.IsNullOrEmpty(registrationViewModel.Login) || !registrationViewModel.Login.Contains("@gmail.com"))
+                return View(registrationViewModel);
 
             var user = new Users
             {
@@ -96,16 +109,15 @@ namespace CalendarPetProject.Controllers
                 SecondName = registrationViewModel.LastName,
                 DateOfBirth = registrationViewModel.DateOfBirth
             };
-            if (user != null)
-            {
-                var result = await _userManager.CreateAsync(user, registrationViewModel.Password);
 
-                if (result.Succeeded)
-                    return RedirectToAction("Login");
+            var result = await _userManager.CreateAsync(user, registrationViewModel.Password);
 
-                foreach (var error in result.Errors)
-                    ModelState.AddModelError(string.Empty, error.Description);
-            }
+            if (result.Succeeded)
+                return RedirectToAction("Login");
+
+            foreach (var error in result.Errors)
+                ModelState.AddModelError(string.Empty, error.Description);
+
             return View(registrationViewModel);
         }
 

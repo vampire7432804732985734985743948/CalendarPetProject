@@ -13,7 +13,7 @@ namespace PerProjectTest
 {
     public class BodyPhysicalParameters
     {
-        private CustomerPhysicalParameters _customerPhysicalParameters = new CustomerPhysicalParameters
+        private readonly CustomerPhysicalParameters _customerPhysicalParameters = new CustomerPhysicalParameters
         (
             new CustomerBodyParametersViewModel()
             {
