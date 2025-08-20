@@ -10,21 +10,26 @@
         <div class="dropdown">
             <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" role="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <form asp-controller="DataRetrieve" asp-action="GetUser">
-                    <label asp-for="@Model.UserPrivateData.FirstName"></label>
+                    <label asp-for="@Model.UserPrivateData.UserName"></label>
 
                 </form>
                 <img src="~/images/avatar.png" alt="User Avatar" width="40" height="40" class="rounded-circle">
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-                <li>
-                    <a class="dropdown-item" asp-controller="Account" asp-action="Profile">Profile</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" asp-controller="Account" asp-action="Settings">Settings</a>
-                </li>
-                <li>
-                    <a class="dropdown-item" asp-controller="Account" asp-action="Statistics">My Stats</a>
-                </li>
+                <form>
+                    <li>
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Profile">Profile</a>
+                    </li>
+                    <li>
+                    <a class="dropdown-item" asp-controller="Home" asp-action="AccountSettings">Settings</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" asp-controller="Home" asp-action="Statistics">My Stats</a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" asp-controller="Home" asp-action="PersonalData">Personal data</a>
+                    </li>
+                </form>
                 <li><hr class="dropdown-divider"></li>
                 <li>
                     <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
@@ -38,11 +43,9 @@
     {
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="Account" asp-action="LogIn">LogIn</a>
-
         </li>
         <li class="nav-item">
             <a class="nav-link text-dark" asp-controller="Account" asp-action="Register">Register</a>
-
         </li>
     }
 </ul>
