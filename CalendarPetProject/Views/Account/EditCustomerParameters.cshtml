@@ -1,11 +1,37 @@
-﻿@using CalendarPetProject.Models.CustomerData
-@model CustomerBodyParametersModel
-
+﻿@using CalendarPetProject.ViewModels.CustomerData
+@model CustomerBodyParametersViewModel
+@using CalendarPetProject.BusinessLogic.AddCustomerPhysicalParameters
 @{
     ViewData["EditCustomerParameters"] = "EditCustomerParameters";
 }
-
-@if(Model == null)
-{
-    
-}
+<link rel="stylesheet" href="~/css/PersonalInfo/PersonalInfo.css" />
+<form class="personal-info-form" asp-controller="Account" asp-action="EditCustomerParameters" method="post">
+    @Html.AntiForgeryToken()
+    <div>
+        <label asp-for="Age"></label>
+        <input asp-for="Age" type="number" />
+    </div>
+    <div>
+        <label asp-for="Height"></label>
+        <input asp-for="Height" type="number" />
+    </div>
+    <div>
+        <label asp-for="Weight"></label>
+        <input asp-for="Weight" type="number" step="0.01" />
+    </div>
+    <div>
+        <label asp-for="PhysicalActivityLevel"></label>
+        <select asp-for="PhysicalActivityLevel">
+            <option value="@PhysicalActivities.Sitting">@PhysicalActivities.Sitting</option>
+            <option value="@PhysicalActivities.LightlyActive">@PhysicalActivities.LightlyActive</option>
+            <option value="@PhysicalActivities.ModeratelyActive">@PhysicalActivities.ModeratelyActive</option>
+            <option value="@PhysicalActivities.VeryActive">@PhysicalActivities.VeryActive</option>
+            <option value="@PhysicalActivities.ExtraActive">@PhysicalActivities.ExtraActive</option>
+        </select>
+    </div>
+    <div>
+        <label asp-for="FatPercentage"></label>
+        <input asp-for="FatPercentage" type="number" />
+    </div>
+    <input type="submit" value="Submit" class="btn btn-success w-100 p-2" />
+</form>

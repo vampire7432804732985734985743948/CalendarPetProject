@@ -5,17 +5,40 @@
     ViewData["Title"] = "PersonalData";
 }
 
-<h2>Hello, @Model.UserPrivateData.FirstName!</h2>
+<h2>Personal information</h2>
+<h5>Your Pay portal identification token is @Model.UserPrivateData.Id. Do not share it with anyone!!</h5>
+<h5>After your first payout, you will receive an email asking to activate your account and specify how you want to transfer your money.</h5>
 
 <p>Email: @Model.UserPrivateData.Email</p>
 <p>Date of Birth: @Model.UserPrivateData.DateOfBirth</p>
 
 @if (Model.CustomerBodyParameters != null)
 {
-    <p>Height: @Model.CustomerBodyParameters.Height</p>
-    <p>Weight: @Model.CustomerBodyParameters.Weight</p>
+    <div class="caption">First name: <p class="user-data">@Model.UserPrivateData.FirstName</p></div>
+    <hr/>
+    <div class="caption">Second name: <p class="user-data">@Model.UserPrivateData.SecondName</p></div>
+    <hr/>
+    <div class="caption">Age: <p class="user-data">@Model.CustomerBodyParameters.Age</p></div>
+    <hr/>
+    <div class="caption">Weight: <p class="user-data">@Model.CustomerBodyParameters.Weight</p></div>
+    <hr/>
+    <div class="caption">Height: <p class="user-data">@Model.CustomerBodyParameters.Height</p></div>
+    <hr/>
+    <div class="caption">Fat percentage: <p class="user-data">@Model.CustomerBodyParameters.FatPercentage</p></div>
+    <hr/>
+    <div class="caption">Physical activity level: <p class="user-data">@Model.CustomerBodyParameters.PhysicalActivityLevel</p></div>
+    <hr/>
+    <div class="caption">Activity coefficient: <p class="user-data">@Model.CustomerBodyParameters.ActivityCoefficient</p></div>
+    <hr/>
+    <div class="caption">Fat-Free Mass(FFM): <p class="user-data">@Model.CustomerBodyParameters.FFM</p></div>
+    <hr/>
+    <div class="caption">Basal Metabolic Rate(BMR): <p class="user-data">@Model.CustomerBodyParameters.BMR</p></div>
+    <hr/>
+    <div class="caption">Total Daily Energy Expenditure(TDEE): <p class="user-data">@Model.CustomerBodyParameters.TDEE</p></div>
+    <hr/>
 }
 else
 {
-    <p>No body parameters found.</p>
+    <p>No data found.</p>
 }
+    <a asp-controller="Account" asp-action="EditCustomerParameters">Edit model</a>
