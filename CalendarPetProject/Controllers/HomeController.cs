@@ -94,6 +94,17 @@ namespace CalendarPetProject.Controllers
 
             return Json(card);
         }
-
+        public IActionResult Profile()
+        {
+            return View();
+        }
+        public IActionResult AccountSettings()
+        {
+            return View();
+        }
+        public IActionResult Statistics()
+        {
+            return View();
+        }
     }
 }

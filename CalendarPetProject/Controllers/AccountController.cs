@@ -7,6 +7,7 @@ using CalendarPetProject.ViewModels.AccountEnterance;
 using CalendarPetProject.ViewModels.CustomerData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CalendarPetProject.Controllers
 {
@@ -73,6 +74,7 @@ namespace CalendarPetProject.Controllers
 
             return View(model);
         }
+
         [HttpPost]
         public IActionResult RedirectToRegister(EmailContainerViewModel emailContainerViewModel)
         {
@@ -83,6 +85,7 @@ namespace CalendarPetProject.Controllers
 
             return RedirectToAction("Register", new { email = emailContainerViewModel.Email });
         }
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registrationViewModel, string action)
         {
@@ -153,6 +156,20 @@ namespace CalendarPetProject.Controllers
             return View("Index", "Home");
 
 
+        }
+
+        [HttpGet("personal/{id}")]
+        public async Task<IActionResult> PersonalData(string id)
+        {
+            var user = await _appDbContext.Users.FindAsync(id);
+            var bodyProperties = await _appDbContext.CustomerBodyParameters
+                .FirstOrDefaultAsync(b => b.UserId == id);
+
+            if (user == null || bodyProperties == null)
+                return NotFound();
+
+            var model = new UserAccountData(user, bodyProperties);
+            return View(model);
         }
     }
     

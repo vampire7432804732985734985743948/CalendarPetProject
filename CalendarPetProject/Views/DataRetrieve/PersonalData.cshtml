@@ -1,0 +1,21 @@
+﻿@using CalendarPetProject.ViewModels.CustomerData
+@model UserAccountData
+
+@{
+    ViewData["Title"] = "PersonalData";
+}
+
+<h2>Hello, @Model.UserPrivateData.FirstName!</h2>
+
+<p>Email: @Model.UserPrivateData.Email</p>
+<p>Date of Birth: @Model.UserPrivateData.DateOfBirth</p>
+
+@if (Model.CustomerBodyParameters != null)
+{
+    <p>Height: @Model.CustomerBodyParameters.Height</p>
+    <p>Weight: @Model.CustomerBodyParameters.Weight</p>
+}
+else
+{
+    <p>No body parameters found.</p>
+}

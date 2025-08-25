@@ -1,16 +1,14 @@
 ﻿using CalendarPetProject.Data;
 using CalendarPetProject.Models;
+using CalendarPetProject.Models.CustomerData;
 using CalendarPetProject.ViewModels.CustomerData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 
 namespace CalendarPetProject.Controllers
 {
-    [ApiController]
-    [Route("api/test")]
-    public class DataRetrieveController : ControllerBase
+    public class DataRetrieveController : Controller
     {
         private readonly AppDbContext _appDbContext;
         private readonly SignInManager<Users> _signInManager;
@@ -33,23 +31,18 @@ namespace CalendarPetProject.Controllers
 
             return Ok(users);
         }
-
-        [HttpGet("user/{id}")]
-        public async Task<IActionResult> GetUser(string id)
+        [HttpGet]
+        public async Task<IActionResult> PersonalData()
         {
-            var user = await _appDbContext.Users.FindAsync(id);
-
+            var user = await _userManager.GetUserAsync(User);
             if (user == null)
-                return NotFound("User not found");
+                return RedirectToAction("Login", "Account");
 
             var bodyProperties = await _appDbContext.CustomerBodyParameters
-                .FirstOrDefaultAsync(b => b.UserId == id);
+                .FirstOrDefaultAsync(b => b.UserId == user.Id);
 
-            if (bodyProperties == null)
-            {
-                return NotFound("Body parameters of selected user not found");
-            }
-            return Ok(new UserAccountData(user, bodyProperties));
+            var model = new UserAccountData(user, bodyProperties ?? new CustomerBodyParametersModel());
+            return View(model);
         }
     }
 }
