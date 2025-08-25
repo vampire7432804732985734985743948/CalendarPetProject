@@ -1,5 +1,5 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    const emailAddress = "MiraiDays@gmail.com";
+    const emailAddress = "ShokuBalance@gmail.com";
     const copyText = document.querySelector(".project-email-address");
     copyText.textContent = emailAddress;
     copyText.addEventListener('click', () => {
@@ -74,9 +74,7 @@
         "#00BCD4", // Cyan
         "#009688", // Teal
         "#4CAF50", // Green
-        "#8BC34A", // Light Green
         "#CDDC39", // Lime
-        "#FFEB3B", // Yellow
         "#FFC107", // Amber
         "#FF9800", // Orange
         "#FF5722", // Deep Orange
@@ -84,7 +82,7 @@
         "#607D8B"  // Blue Grey
     ];
     function setRandomColor() {
-        const avatarDimention = 50;
+        const avatarDimention = 45;
         const randomIndex = Math.floor(Math.random() * avatarBackgoundColors.length);
         userAvatar.style.backgroundColor = avatarBackgoundColors[randomIndex]
         userAvatar.style.width = avatarDimention + "px";

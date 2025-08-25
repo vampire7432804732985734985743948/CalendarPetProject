@@ -13,7 +13,6 @@ namespace CalendarPetProject.ViewModels.CustomerData
         public int Weight { get; set; }
 
         [Required]
-        [Range(0, 130)]
         public string PhysicalActivityLevel { get; set; } = string.Empty;
 
         [Required]

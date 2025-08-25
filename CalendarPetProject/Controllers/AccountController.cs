@@ -125,37 +125,82 @@ namespace CalendarPetProject.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditCustomerParameters(CustomerBodyParametersViewModel customerParameters)
         {
-            if (!ModelState.IsValid) return View();
-
+            if (!ModelState.IsValid)
+                return View(customerParameters);
+            Console.WriteLine("Post start");
             var user = await _userManager.GetUserAsync(User);
+            if (user == null)
+                return RedirectToAction("Login", "Account");
 
             CustomerPhysicalParameters customerPhysicalParameters = new CustomerPhysicalParameters(customerParameters);
+
+            var existing = await _appDbContext.CustomerBodyParameters
+                .FirstOrDefaultAsync(b => b.UserId == user.Id);
+
+            if (existing != null)
+            {
+                existing.Age = customerParameters.Age;
+                existing.Height = customerParameters.Height;
+                existing.Weight = customerParameters.Weight;
+                existing.FatPercentage = customerParameters.FatPercentage;
+                existing.PhysicalActivityLevel = customerParameters.PhysicalActivityLevel;
+                existing.ActivityCoefficient = customerPhysicalParameters.GetAclivityCoefficient();
+                existing.FFM = customerPhysicalParameters.CalculateFFM();
+                existing.BMR = customerPhysicalParameters.CalculateBMR();
+                existing.TDEE = customerPhysicalParameters.CalculateTDEE();
+            }
+            else
+            {
+                CustomerBodyParametersModel customerBodyParametersModel = new CustomerBodyParametersModel()
+                {
+                    UserId = user.Id,
+                    Age = customerParameters.Age,
+                    Height = customerParameters.Height,
+                    Weight = customerParameters.Weight,
+                    FatPercentage = customerParameters.FatPercentage,
+                    PhysicalActivityLevel = customerParameters.PhysicalActivityLevel,
+                    ActivityCoefficient = customerPhysicalParameters.GetAclivityCoefficient(),
+                    FFM = customerPhysicalParameters.CalculateFFM(),
+                    BMR = customerPhysicalParameters.CalculateBMR(),
+                    TDEE = customerPhysicalParameters.CalculateTDEE()
+                };
+
+                _appDbContext.CustomerBodyParameters.Add(customerBodyParametersModel);
+            }
+            Console.WriteLine("Post end");
+
+            await _appDbContext.SaveChangesAsync();
+
+            return RedirectToAction("Index", "Home");
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> EditCustomerParameters()
+        {
+            var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return View(customerPhysicalParameters);
+                return RedirectToAction("Login", "Account");
             }
 
-            CustomerBodyParametersModel customerBodyParametersModel = new CustomerBodyParametersModel()
-            { 
-                UserId = user.Id,
-                Height = customerParameters.Height,
-                Weight = customerParameters.Weight,
-                FatPercentage = customerParameters.FatPercentage,
-                PhysicalActivityLevel = customerParameters.PhysicalActivityLevel,
-                ActivityCoefficient = customerPhysicalParameters.GetAclivityCoefficient(),
-                FFM = customerPhysicalParameters.CalculateFFM(),
-                BMR = customerPhysicalParameters.CalculateBMR(),
-                TDEE = customerPhysicalParameters.CalculateTDEE()
-            };
+            var existingParameters = await _appDbContext.CustomerBodyParameters
+                .FirstOrDefaultAsync(b => b.UserId == user.Id);
 
-            _appDbContext.CustomerBodyParameters.Add(customerBodyParametersModel);
-            _appDbContext.SaveChanges();
+            var model = new CustomerBodyParametersViewModel();
 
-            return View("Index", "Home");
-
-
+            if (existingParameters != null)
+            {
+                model.Age = existingParameters.Age;
+                model.Height = existingParameters.Height;
+                model.Weight = existingParameters.Weight;
+                model.FatPercentage = existingParameters.FatPercentage;
+                model.PhysicalActivityLevel = existingParameters.PhysicalActivityLevel;
+            }
+            return View(model);
         }
 
         [HttpGet("personal/{id}")]
