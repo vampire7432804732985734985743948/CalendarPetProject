@@ -164,3 +164,12 @@ body {
     transform: scale(1.1);
     background-color: #e6e6e6;
 }
+
+.user-avatar {
+    display: flex;
+    color: white;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 3px grey;
+}

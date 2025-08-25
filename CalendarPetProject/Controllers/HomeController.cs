@@ -94,8 +94,6 @@ namespace CalendarPetProject.Controllers
 
             return Json(card);
         }
-
-
         public IActionResult Profile()
         {
             return View();
@@ -105,10 +103,6 @@ namespace CalendarPetProject.Controllers
             return View();
         }
         public IActionResult Statistics()
-        {
-            return View();
-        }
-        public IActionResult PersonalData()
         {
             return View();
         }

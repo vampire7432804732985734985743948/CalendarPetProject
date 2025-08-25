@@ -1,38 +1,26 @@
-﻿@using Microsoft.AspNetCore.Identity;
-@inject SignInManager<Users> signInManager;
-@using CalendarPetProject.ViewModels.CustomerData
-@model UserAccountData
+﻿@using Microsoft.AspNetCore.Identity
+@inject UserManager<Users> userManager
+@inject SignInManager<Users> signInManager
 
+<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <ul class="navbar-nav ms-auto">
-
     @if (signInManager.IsSignedIn(User))
     {
+        var user = await userManager.GetUserAsync(User);
         <div class="dropdown">
             <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" role="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                <form asp-controller="DataRetrieve" asp-action="GetUser">
-                    <label asp-for="@Model.UserPrivateData.UserName"></label>
-
-                </form>
-                <img src="~/images/avatar.png" alt="User Avatar" width="40" height="40" class="rounded-circle">
+                <div class="rounded-circle user-avatar" id="avatar-background">
+                    @user.FirstName[0]@user.SecondName[0]
+                </div>
             </a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="accountDropdown">
-                <form>
-                    <li>
-                        <a class="dropdown-item" asp-controller="Home" asp-action="Profile">Profile</a>
-                    </li>
-                    <li>
-                    <a class="dropdown-item" asp-controller="Home" asp-action="AccountSettings">Settings</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" asp-controller="Home" asp-action="Statistics">My Stats</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" asp-controller="Home" asp-action="PersonalData">Personal data</a>
-                    </li>
-                </form>
+                <li><a class="dropdown-item" asp-controller="Home" asp-action="Profile">Profile</a></li>
+                <li><a class="dropdown-item" asp-controller="Home" asp-action="AccountSettings">Settings</a></li>
+                <li><a class="dropdown-item" asp-controller="Home" asp-action="Statistics">My Stats</a></li>
+                <li><a class="dropdown-item" asp-controller="DataRetrieve" asp-action="PersonalData">Personal data</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li>
-                    <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                    <form asp-controller="Account" asp-action="Logout" method="post">
                         <button type="submit" class="dropdown-item">Logout</button>
                     </form>
                 </li>
@@ -49,3 +37,4 @@
         </li>
     }
 </ul>
+<script src="~/js/site.js" defer></script>
