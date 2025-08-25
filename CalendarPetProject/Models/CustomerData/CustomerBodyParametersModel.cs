@@ -12,7 +12,7 @@ namespace CalendarPetProject.Models.CustomerData
         [ForeignKey("UserId")]
         public Users User { get; set; } = null!;
         public int Height { get; set; }
-        public int Weight { get; set; }
+        public double Weight { get; set; }
         public int FatPercentage { get; set; }
         public string PhysicalActivityLevel { get; set; } = string.Empty;
         public double ActivityCoefficient { get; set; }
