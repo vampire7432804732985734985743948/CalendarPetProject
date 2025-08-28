@@ -8,6 +8,7 @@ using CalendarPetProject.ViewModels.CustomerData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace CalendarPetProject.Controllers
 {
@@ -176,33 +177,47 @@ namespace CalendarPetProject.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+        private async Task<UserAccountData> GetUser()
+        {
+            var user = await _userManager.GetUserAsync(User)
+                ?? throw new ArgumentException("Cannot find such user");
+            var existingBodyParameters = await _appDbContext.CustomerBodyParameters
+              .FirstOrDefaultAsync(b => b.UserId == user.Id);
 
+            var existingAccountParameters = await _appDbContext.Users
+               .FirstOrDefaultAsync(b => b.Id == user.Id) ?? throw new ArgumentException("No userFound");
 
+            return new UserAccountData(existingAccountParameters, existingBodyParameters);
+        }
         [HttpGet]
         public async Task<IActionResult> EditCustomerParameters()
         {
-            var user = await _userManager.GetUserAsync(User);
-            if (user == null)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
-            var existingParameters = await _appDbContext.CustomerBodyParameters
-                .FirstOrDefaultAsync(b => b.UserId == user.Id);
+            var importedModel = await GetUser();
 
             var model = new CustomerBodyParametersViewModel();
 
-            if (existingParameters != null)
+            if (importedModel != null)
             {
-                model.Age = existingParameters.Age;
-                model.Height = existingParameters.Height;
-                model.Weight = existingParameters.Weight;
-                model.FatPercentage = existingParameters.FatPercentage;
-                model.PhysicalActivityLevel = existingParameters.PhysicalActivityLevel;
+                model.Age = importedModel.CustomerBodyParameters.Age;
+                model.Height = importedModel.CustomerBodyParameters.Height;
+                model.Weight = importedModel.CustomerBodyParameters.Weight;
+                model.FatPercentage = importedModel.CustomerBodyParameters.FatPercentage;
+                model.PhysicalActivityLevel = importedModel.CustomerBodyParameters.PhysicalActivityLevel;
             }
             return View(model);
         }
-
+        [HttpGet]
+        public async Task<IActionResult> Profile()
+        {
+            var model = await GetUser();
+            return View(model);
+        }
+        [HttpGet]
+        public async Task<IActionResult> UserPage()
+        {
+            var model = await GetUser();
+            return View(model);
+        }
         [HttpGet("personal/{id}")]
         public async Task<IActionResult> PersonalData(string id)
         {
