@@ -7,7 +7,7 @@
     @if (signInManager.IsSignedIn(User))
     {
         var user = await userManager.GetUserAsync(User);
-        <div class="dropdown">
+        <article class="dropdown">
             <a class="d-flex align-items-center text-decoration-none dropdown-toggle" href="#" role="button" id="accountDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                 <div class="rounded-circle user-avatar" id="avatar-background">
                     @user.FirstName[0]@user.SecondName[0]
@@ -25,7 +25,7 @@
                     </form>
                 </li>
             </ul>
-        </div>
+        </article>
     }
     else
     {

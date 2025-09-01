@@ -4,10 +4,42 @@
 @{
     ViewData["Title"] = "Profile";
 }
-@if (@Model.CustomerBodyParameters.FFM != 0)
+
+<link rel="stylesheet" href="~/css/User/Profile.css" asp-append-version="true" />
+
+@if (@Model.CustomerBodyParameters != null)
 {
-    <p>@Model.CustomerBodyParameters.Height</p>
-    <div>Exist</div>
+    <div class="profile-stats">
+        <p>Your profile level</p>
+        <div class="skill">
+            <div class="outline">
+                <div class="inline">
+                </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 class="exp-indicator"
+                 version="1.1"
+                 viewBox="0 0 200 200"
+                 width="300"
+                 height="300">
+
+                <defs>
+                    <linearGradient id="GradientColor">
+                        <stop offset="0%" stop-color="#DA22FF" />
+                        <stop offset="100%" stop-color="#9733EE" />
+                    </linearGradient>
+                </defs>
+                <circle cx="100" cy="100" r="75" stroke="url(#GradientColor)" stroke-width="20" fill="none" stroke-linecap="round" />
+            </svg>
+
+        </div>
+
+    </div>
+
+    <div class="profile-stats">
+        <p>@Model.UserPrivateData.FirstName @Model.UserPrivateData.SecondName</p>
+
+    </div>
 }
 else
 {
@@ -19,3 +51,4 @@ else
         </div>
     </form>
 }
+<script src="~/js/User/Profile.js" defer></script>
