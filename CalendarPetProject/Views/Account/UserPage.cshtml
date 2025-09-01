@@ -1,0 +1,22 @@
+﻿@using CalendarPetProject.ViewModels.CustomerData
+@model UserAccountData
+
+@{
+    ViewData["Title"] = "UserPage";
+}
+
+@if (@Model.CustomerBodyParameters != null)
+{
+    <p>@Model.CustomerBodyParameters.Height</p>
+    <div>Exist</div>
+}
+else
+{
+    <form asp-controller="Account" asp-action="UserPage">
+        <div class="card-container">
+            <div class="card">
+                <input asp-for="CustomerBodyParameters.Age" type="number" asp />
+            </div>
+        </div>
+    </form>
+}

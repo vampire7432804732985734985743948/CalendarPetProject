@@ -39,7 +39,7 @@ namespace CalendarPetProject.Controllers
         {
             if (User.Identity?.IsAuthenticated == true)
             {
-                return View("LoggedInView");
+                return RedirectToAction("UserPage", "Account");
             }
             else
             {
@@ -93,10 +93,6 @@ namespace CalendarPetProject.Controllers
             if (card == null) return NotFound();
 
             return Json(card);
-        }
-        public IActionResult Profile()
-        {
-            return View();
         }
         public IActionResult AccountSettings()
         {
