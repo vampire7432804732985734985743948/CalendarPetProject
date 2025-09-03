@@ -18,5 +18,6 @@ namespace CalendarPetProject.Data
         public DbSet<Users> UsersSet { get; set; }
         public DbSet<ContactSupportModel> ContactSupportCases { get; set; }
         public DbSet<CustomerBodyParametersModel> CustomerBodyParameters { get; set; }
+        public DbSet<UserAccountDataModel> UserAccountDatas { get; set; }
     }
 }
