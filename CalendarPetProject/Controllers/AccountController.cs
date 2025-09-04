@@ -87,7 +87,6 @@ namespace CalendarPetProject.Controllers
             return RedirectToAction("Register", new { email = emailContainerViewModel.Email });
         }
 
-        [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel registrationViewModel, string action)
         {
             if (action == "generatePassword")
@@ -117,13 +116,29 @@ namespace CalendarPetProject.Controllers
             var result = await _userManager.CreateAsync(user, registrationViewModel.Password);
 
             if (result.Succeeded)
+            {
+                var profileSettings = new UserProfileDataModel
+                {
+                    UserId = user.Id,
+                    ProfileImage = null,
+                    Experience = 0,
+                    ProfileLevel = 0,
+                    ArhivedStreaks = null,
+                    ConnectedAccountAddresses = null
+                };
+
+                _appDbContext.UserProfileData.Add(profileSettings);
+                await _appDbContext.SaveChangesAsync();
+
                 return RedirectToAction("Login");
+            }
 
             foreach (var error in result.Errors)
                 ModelState.AddModelError(string.Empty, error.Description);
 
             return View(registrationViewModel);
         }
+
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -181,13 +196,17 @@ namespace CalendarPetProject.Controllers
         {
             var user = await _userManager.GetUserAsync(User)
                 ?? throw new ArgumentException("Cannot find such user");
+
             var existingBodyParameters = await _appDbContext.CustomerBodyParameters
-              .FirstOrDefaultAsync(b => b.UserId == user.Id);
+                .FirstOrDefaultAsync(b => b.UserId == user.Id);
+
+            var existingProfileData = await _appDbContext.UserProfileData
+                .FirstOrDefaultAsync(b => b.UserId == user.Id);
 
             var existingAccountParameters = await _appDbContext.Users
                .FirstOrDefaultAsync(b => b.Id == user.Id) ?? throw new ArgumentException("No userFound");
 
-            return new UserAccountData(existingAccountParameters, existingBodyParameters);
+            return new UserAccountData(existingAccountParameters, existingBodyParameters, existingProfileData);
         }
         [HttpGet]
         public async Task<IActionResult> EditCustomerParameters()
@@ -224,11 +243,13 @@ namespace CalendarPetProject.Controllers
             var user = await _appDbContext.Users.FindAsync(id);
             var bodyProperties = await _appDbContext.CustomerBodyParameters
                 .FirstOrDefaultAsync(b => b.UserId == id);
+            var userProfileData = await _appDbContext.UserProfileData
+              .FirstOrDefaultAsync(b => b.UserId == id);
 
-            if (user == null || bodyProperties == null)
+            if (user == null || bodyProperties == null || userProfileData == null)
                 return NotFound();
 
-            var model = new UserAccountData(user, bodyProperties);
+            var model = new UserAccountData(user, bodyProperties, userProfileData);
             return View(model);
         }
     }

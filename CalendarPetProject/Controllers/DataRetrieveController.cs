@@ -41,7 +41,10 @@ namespace CalendarPetProject.Controllers
             var bodyProperties = await _appDbContext.CustomerBodyParameters
                 .FirstOrDefaultAsync(b => b.UserId == user.Id);
 
-            var model = new UserAccountData(user, bodyProperties ?? new CustomerBodyParametersModel());
+            var userProfileData = await _appDbContext.UserProfileData
+               .FirstOrDefaultAsync(b => b.UserId == user.Id);
+
+            var model = new UserAccountData(user, bodyProperties, userProfileData);
             return View(model);
         }
 
