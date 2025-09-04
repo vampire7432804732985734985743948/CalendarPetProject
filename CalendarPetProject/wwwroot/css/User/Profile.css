@@ -50,3 +50,14 @@ circle {
     stroke-dasharray:450;
     stroke-dashoffset:50;
 }
+.user-avatar {
+    width:200px;
+    height:200px;
+    display: flex;
+    color: white;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0px 0px 3px grey;
+    font-weight: 600;
+}

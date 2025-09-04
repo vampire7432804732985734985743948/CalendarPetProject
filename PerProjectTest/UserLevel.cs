@@ -20,5 +20,17 @@ namespace PerProjectTest
 
             userLevel.Should().Be(3);
         }
+
+        [Fact]
+        public void GetNextLevelExperienceNeeded()
+        {
+            int currentUserLevel = 300;
+
+            ExperienceLevelHandler currentLevelHandler = new ExperienceLevelHandler();
+
+            int nextLevelExperienceNeeded = currentLevelHandler.ReturnNeededAmmountOfExperience(currentUserLevel);
+
+            nextLevelExperienceNeeded.Should().Be(600);
+        }
     }
 }

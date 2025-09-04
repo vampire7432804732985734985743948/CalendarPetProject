@@ -1,4 +1,6 @@
-﻿@using CalendarPetProject.ViewModels.CustomerData
+﻿@using CalendarPetProject.BusinessLogic.Profile
+@using CalendarPetProject.ViewModels.CustomerData
+@inject ExperienceLevelHandler ExperienceHandler
 @model UserAccountData
 
 @{
@@ -7,14 +9,41 @@
 
 <link rel="stylesheet" href="~/css/User/Profile.css" asp-append-version="true" />
 
-@if (@Model.CustomerBodyParameters != null)
+@if (@Model != null )
 {
+     <div class="profile-stats">
+         <div>
+            <p>@Model.UserPrivateData.FirstName @Model.UserPrivateData.SecondName</p>
+            <p>@Model.UserPrivateData.UserName</p>
+            <p>More about this profile <button>....more</button></p>
+         </div>
+         <div>
+            @if (@Model.UserProfileData.ProfileImage != null)
+            {
+                <img src="@Model.UserProfileData.ProfileImage" alt="ProfileImage"/>
+            }
+            else
+            {
+                <div class="rounded-circle user-avatar" id="avatar-background">
+                    <p>@Model.UserPrivateData.FirstName[0]@Model.UserPrivateData.SecondName[0]</p>
+                </div>
+            }
+         </div>
+     </div>
     <div class="profile-stats">
         <p>Your profile level</p>
         <div class="skill">
             <div class="outline">
                 <div class="inline">
                     <p>
+                        @if (@Model.UserProfileData != null)
+                        {
+                            <p>LVL: @Model.UserProfileData.ProfileLevel</p>
+                        }
+                        else
+                        {
+                            <p>Profile level</p>
+                        }
                     </p>
                 </div>
             </div>
@@ -35,16 +64,12 @@
             </svg>
             @if (@Model.UserProfileData != null)
             {
-                <p>@Model.UserProfileData.Experience / </p>
+                <p>@Model.UserProfileData.Experience / @ExperienceHandler.ReturnNeededAmmountOfExperience(@Model.UserProfileData.Experience)</p>
             }
         </div>
 
     </div>
 
-    <div class="profile-stats">
-        <p>@Model.UserPrivateData.FirstName @Model.UserPrivateData.SecondName</p>
-
-    </div>
 }
 else
 {

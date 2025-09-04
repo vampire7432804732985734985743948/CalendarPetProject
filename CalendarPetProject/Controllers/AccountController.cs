@@ -198,13 +198,13 @@ namespace CalendarPetProject.Controllers
                 ?? throw new ArgumentException("Cannot find such user");
 
             var existingBodyParameters = await _appDbContext.CustomerBodyParameters
-                .FirstOrDefaultAsync(b => b.UserId == user.Id);
+                .FirstOrDefaultAsync(b => b.UserId == user.Id) ?? new CustomerBodyParametersModel();
 
             var existingProfileData = await _appDbContext.UserProfileData
-                .FirstOrDefaultAsync(b => b.UserId == user.Id);
+                .FirstOrDefaultAsync(b => b.UserId == user.Id) ?? new UserProfileDataModel();
 
             var existingAccountParameters = await _appDbContext.Users
-               .FirstOrDefaultAsync(b => b.Id == user.Id) ?? throw new ArgumentException("No userFound");
+               .FirstOrDefaultAsync(b => b.Id == user.Id) ?? new Users();
 
             return new UserAccountData(existingAccountParameters, existingBodyParameters, existingProfileData);
         }
