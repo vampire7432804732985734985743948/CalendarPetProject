@@ -252,6 +252,11 @@ namespace CalendarPetProject.Controllers
             var model = new UserAccountData(user, bodyProperties, userProfileData);
             return View(model);
         }
+
+        public IActionResult UpdateUserProfile()
+        {
+            return View();
+        }
     }
     
 }

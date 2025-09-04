@@ -6,9 +6,8 @@
         if (!skill || !experienceIndicator) return;
 
         const skillRect = skill.getBoundingClientRect();
-        const parentRect = skill.parentElement.getBoundingClientRect(); // optional if needed
+        const parentRect = skill.parentElement.getBoundingClientRect();
 
-        // Center the SVG inside the skill div
         const x = (skill.clientWidth - experienceIndicator.clientWidth) / 2;
         const y = (skill.clientHeight - experienceIndicator.clientHeight) / 2;
 
@@ -19,7 +18,7 @@
     window.addEventListener("load", positionToggleButton);
     window.addEventListener("resize", positionToggleButton);
 
-    const userAvatar = document.getElementById("avatar-background");
+    const userAvatar = document.getElementById("avatar-profile");
     const avatarBackgoundColors = [
         "#F44336", // Red
         "#E91E63", // Pink
@@ -39,11 +38,12 @@
         "#607D8B"  // Blue Grey
     ];
     function setRandomColor() {
-        const avatarDimention = 45;
+        const avatarDimention = 150;
         const randomIndex = Math.floor(Math.random() * avatarBackgoundColors.length);
         userAvatar.style.backgroundColor = avatarBackgoundColors[randomIndex]
         userAvatar.style.width = avatarDimention + "px";
         userAvatar.style.height = avatarDimention + "px";
     }
     setRandomColor();
+  
 });

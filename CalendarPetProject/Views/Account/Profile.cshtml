@@ -11,26 +11,43 @@
 
 @if (@Model != null )
 {
-     <div class="profile-stats">
+     <div class="profile-stats profile-data">
          <div>
-            <p>@Model.UserPrivateData.FirstName @Model.UserPrivateData.SecondName</p>
-            <p>@Model.UserPrivateData.UserName</p>
-            <p>More about this profile <button>....more</button></p>
+            <p class="user-name">@Model.UserPrivateData.FirstName @Model.UserPrivateData.SecondName</p>
+            <p class="user-email">@Model.UserPrivateData.UserName</p>
+            <p class="more">More about this profile <button class="more-info-button">....more</button></p>
          </div>
          <div>
-            @if (@Model.UserProfileData.ProfileImage != null)
+            @if (@Model.UserProfileData?.ProfileImage != null)
             {
                 <img src="@Model.UserProfileData.ProfileImage" alt="ProfileImage"/>
             }
             else
             {
-                <div class="rounded-circle user-avatar" id="avatar-background">
-                    <p>@Model.UserPrivateData.FirstName[0]@Model.UserPrivateData.SecondName[0]</p>
+                <div class="rounded-circle user-avatar-profile" id="avatar-profile">
+                    @Model.UserPrivateData.FirstName?[0]@Model.UserPrivateData.SecondName?[0]
                 </div>
             }
+            <a asp-action="UpdateUserProfile" asp-controller="Account">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M3 17.25V21h3.75l11.06-11.06-3.75-3.75L3 17.25zM20.71
+                7.04a1.003 1.003 0 0 0 0-1.42l-2.34-2.34a1.003
+                1.003 0 0 0-1.42 0l-1.83 1.83 3.75 3.75
+                1.84-1.82z" />
+                </svg>
+            </a>
          </div>
      </div>
     <div class="profile-stats">
+        @{
+            int currentXP = Model.UserProfileData?.Experience ?? 0;
+            int nextLevelXP = ExperienceHandler.ReturnNeededAmmountOfExperience(currentXP);
+
+            double progress = (nextLevelXP > 0) ? (double)currentXP / nextLevelXP : 0;
+            double radius = 75;
+            double circumference = 2 * Math.PI * radius;
+            double offset = circumference * (1 - progress);
+        }
         <p>Your profile level</p>
         <div class="skill">
             <div class="outline">
@@ -44,32 +61,29 @@
                         {
                             <p>Profile level</p>
                         }
-                    </p>
+                    <p/>
                 </div>
             </div>
-            <svg xmlns="http://www.w3.org/2000/svg"
-                 class="exp-indicator"
-                 version="1.1"
-                 viewBox="0 0 200 200"
-                 width="300"
-                 height="300">
 
+            <svg xmlns="http://www.w3.org/2000/svg" class="exp-indicator"
+                 viewBox="0 0 200 200" width="300" height="300"
+                 style="--dasharray:@circumference; --dashoffset:@offset;">
                 <defs>
-                    <linearGradient id="GradientColor">
+                    <linearGradient id="GradientColor" x1="0%" y1="0%" x2="100%" y2="0%">
                         <stop offset="0%" stop-color="#DA22FF" />
                         <stop offset="100%" stop-color="#9733EE" />
                     </linearGradient>
                 </defs>
-                <circle cx="100" cy="100" r="75" stroke="url(#GradientColor)" stroke-width="20" fill="none" stroke-linecap="round" />
+
+                <circle class="bg" cx="100" cy="100" r="@radius" />
+                <circle class="progress" cx="100" cy="100" r="@radius" />
             </svg>
             @if (@Model.UserProfileData != null)
             {
                 <p>@Model.UserProfileData.Experience / @ExperienceHandler.ReturnNeededAmmountOfExperience(@Model.UserProfileData.Experience)</p>
             }
         </div>
-
     </div>
-
 }
 else
 {
