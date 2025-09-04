@@ -15,7 +15,6 @@
             <div class="outline">
                 <div class="inline">
                     <p>
-
                     </p>
                 </div>
             </div>
@@ -34,6 +33,10 @@
                 </defs>
                 <circle cx="100" cy="100" r="75" stroke="url(#GradientColor)" stroke-width="20" fill="none" stroke-linecap="round" />
             </svg>
+            @if (@Model.UserProfileData != null)
+            {
+                <p>@Model.UserProfileData.Experience / </p>
+            }
         </div>
 
     </div>

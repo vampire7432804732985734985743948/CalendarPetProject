@@ -4,6 +4,7 @@ using CalendarPetProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalendarPetProject.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250903144114_FixAccountData")]
+    partial class FixAccountData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -84,6 +87,7 @@ namespace CalendarPetProject.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ConnectedAccountAddresses")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Experience")
@@ -97,9 +101,11 @@ namespace CalendarPetProject.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("UserProfileData");
                 });
@@ -351,6 +357,17 @@ namespace CalendarPetProject.Migrations
                 });
 
             modelBuilder.Entity("CalendarPetProject.Models.CustomerData.CustomerBodyParametersModel", b =>
+                {
+                    b.HasOne("CalendarPetProject.Models.Users", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("CalendarPetProject.Models.CustomerData.UserProfileDataModel", b =>
                 {
                     b.HasOne("CalendarPetProject.Models.Users", "User")
                         .WithMany()

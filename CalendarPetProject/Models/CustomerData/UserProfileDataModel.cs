@@ -10,9 +10,8 @@ namespace CalendarPetProject.Models.CustomerData
         [Required]
         public string UserId { get; set; } = string.Empty;
         [ForeignKey("UserId")]
-        public Users User { get; set; } = null!;
         public byte[]? ProfileImage { get; set; }
-        public string ConnectedAccountAddresses { get; set; } = string.Empty;
+        public string? ConnectedAccountAddresses { get; set; } = string.Empty;
 
         private int _experience;
         public int Experience
@@ -26,7 +25,7 @@ namespace CalendarPetProject.Models.CustomerData
                 }
                 else 
                 {
-                    throw new ArgumentException("Experience cannot be less than 0");
+                    _experience = 0;
                 }
             }
         }
@@ -43,11 +42,10 @@ namespace CalendarPetProject.Models.CustomerData
                 }
                 else
                 {
-                    throw new ArgumentException("Profulr level cannot be less than 0");
+                    _profileLevel = 0;
                 }
             }
         }
-
         public string? ArhivedStreaks { get; set; }
     }
 }
