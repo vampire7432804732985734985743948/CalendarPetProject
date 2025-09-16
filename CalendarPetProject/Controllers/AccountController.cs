@@ -18,7 +18,7 @@ namespace CalendarPetProject.Controllers
         private readonly SignInManager<Users> _signInManager;
         private readonly UserManager<Users> _userManager;
         private const int PASSWORD_LENGTH = 32;
-
+        private bool _wasUserProfileDataFound = false;
         public AccountController(SignInManager<Users> signInManager, UserManager<Users> userManager, AppDbContext appDbContext)
         {
             _signInManager = signInManager;
@@ -110,7 +110,8 @@ namespace CalendarPetProject.Controllers
                 Email = registrationViewModel.Login,
                 FirstName = registrationViewModel.FirstName,
                 SecondName = registrationViewModel.LastName,
-                DateOfBirth = registrationViewModel.DateOfBirth
+                DateOfBirth = registrationViewModel.DateOfBirth,
+                DateOfAccountCreation = DateTime.Now,
             };
 
             var result = await _userManager.CreateAsync(user, registrationViewModel.Password);
@@ -253,10 +254,78 @@ namespace CalendarPetProject.Controllers
             return View(model);
         }
 
-        public IActionResult UpdateUserProfile()
+        public async Task<IActionResult> UpdateUserProfile()
         {
-            return View();
+            var importedModel = await GetUser();
+            var model = new UserProfileDataViewModel();
+            if (importedModel != null)
+            {
+                _wasUserProfileDataFound = true;
+                model.ProfileImageData = importedModel.UserProfileData.ProfileImage;
+                model.ConnectedAccountAddresses = importedModel.UserProfileData.ConnectedAccountAddresses;
+                model.ProfileDescription = importedModel.UserProfileData.ProfileDescription;
+                model.Country = importedModel.UserProfileData.Country;
+                model.Youtube = importedModel.UserProfileData.Youtube;
+                model.LinkedIn = importedModel.UserProfileData.LinkedIn;
+                model.Instagram = importedModel.UserProfileData.Instagram;
+                model.X = importedModel.UserProfileData.X;
+
+            }
+            return View(model);
         }
+        [HttpPost]
+        public async Task<IActionResult> UpdateProfileInformation(UserProfileDataViewModel profile)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user == null) return RedirectToAction("Login");
+
+            var existingProfile = await _appDbContext.UserProfileData
+                .FirstOrDefaultAsync(p => p.UserId == user.Id);
+
+            byte[]? imageData = null;
+
+
+            if (profile.ProfileImage != null && profile.ProfileImage.Length > 0)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    await profile.ProfileImage.CopyToAsync(ms);
+                    imageData = ms.ToArray();
+                }
+            }
+            if (existingProfile == null)
+            {
+
+                UserProfileDataModel newProfile = new UserProfileDataModel
+                {
+                    UserId = user.Id,
+                    ProfileImage = imageData,
+                    ConnectedAccountAddresses = profile.ConnectedAccountAddresses,
+                    ProfileDescription = profile.ProfileDescription,
+                    Country = profile.Country,
+                    Youtube = profile.Youtube,
+                    LinkedIn = profile.LinkedIn,
+                    Instagram = profile.Instagram,
+                    X = profile.X,
+                };
+                _appDbContext.UserProfileData.Add(newProfile);
+            }
+            else
+            {
+                existingProfile.ProfileImage = imageData;
+                existingProfile.ConnectedAccountAddresses = profile.ConnectedAccountAddresses;
+                existingProfile.ProfileDescription = profile.ProfileDescription;
+                existingProfile.Country = profile.Country;
+                existingProfile.Youtube = profile.Youtube;
+                existingProfile.LinkedIn = profile.LinkedIn;
+                existingProfile.Instagram = profile.Instagram;
+                existingProfile.X = profile.X;
+            }
+
+            await _appDbContext.SaveChangesAsync();
+            return RedirectToAction("Index", "Home");
+        }
+       
     }
     
 }

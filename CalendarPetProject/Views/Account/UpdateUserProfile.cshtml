@@ -1,5 +1,29 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using CalendarPetProject.ViewModels.CustomerData
+@model UserProfileDataViewModel
+
 @{
+    ViewData["Title"] = "Update user profile";
 }
+<link rel="stylesheet" href="~/css/User/Profile.css" asp-append-version="true" />
+
+<form asp-action="UpdateProfileInformation" asp-controller="Account" enctype="multipart/form-data">
+    <div class="user-profile-update-form">
+
+        @if (Model.ProfileImageData != null)
+        {
+            <div class="profile-image">
+                <img src="@(string.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.ProfileImageData)))" alt="Profile Image" />
+            </div>
+        }
+
+        <input asp-for="ProfileImage" type="file" accept="image/*" class="form-control" />
+        <input asp-for="Country" class="form-control" />
+        <textarea asp-for="ProfileDescription" class="form-control">@Model.ProfileDescription</textarea>
+        <input asp-for="ConnectedAccountAddresses" class="form-control" />
+        <input asp-for="Youtube" class="form-control" />
+        <input asp-for="Instagram" class="form-control" />
+        <input asp-for="X" class="form-control" />
+        <input asp-for="LinkedIn" class="form-control" />
+        <button type="submit" class="btn btn-primary">Save</button>
+    </div>
+</form>

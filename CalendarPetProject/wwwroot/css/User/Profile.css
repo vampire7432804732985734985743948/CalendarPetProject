@@ -106,3 +106,44 @@ circle.progress {
     background: none;
     border: 0px;
 }
+.user-profile-update-form{
+    display:flex;
+    flex-direction:column;
+    gap:2em;
+}
+.profile-image {
+    width: 150px; 
+    height: 150px;
+    border-radius: 50%; 
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.profile-description{
+    background-color: white;
+    position:absolute;
+    width: 50%;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 10px darkgrey;
+    align-self:center;
+    z-index:3;
+    padding:20px;
+}
+.social-media-link {
+    display:flex; 
+    flex-direction:row;
+    gap:1em;
+}
+.socials{
+    display:flex;
+    flex-direction:column;
+    gap:0.5em;
+}
