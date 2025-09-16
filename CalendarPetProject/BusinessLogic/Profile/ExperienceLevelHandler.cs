@@ -4,7 +4,7 @@ namespace CalendarPetProject.BusinessLogic.Profile
 {
     public class ExperienceLevelHandler
     {
-        private Dictionary<int, int> _userProfileLevel = new Dictionary<int, int>()
+        private readonly Dictionary<int, int> _userProfileLevel = new Dictionary<int, int>()
         {
             { 0, 1 },      
             { 100, 2 },   
@@ -18,12 +18,12 @@ namespace CalendarPetProject.BusinessLogic.Profile
             { 4500, 10 } 
         };
 
+        private int maximumAvailableExperience => _userProfileLevel.Keys.Max();
+        private int maxLevel => _userProfileLevel.Values.Max();
         public int ReturnUserProfileLevel(int userExperience)
         {
             int userLevel = 0;
             var userExperienceKeys = _userProfileLevel.Keys.OrderBy(k => k).ToList();
-            int maximumAvailableExperience = _userProfileLevel.Keys.Max();
-            int maxLevel = _userProfileLevel[maximumAvailableExperience];
 
             for (int i = 0; i < userExperienceKeys.Count; i++)
             {
@@ -41,6 +41,29 @@ namespace CalendarPetProject.BusinessLogic.Profile
                 }
             }
             return userLevel;
+        }
+        public int ReturnNeededAmmountOfExperience(int userEperience)
+        { 
+            int currentUerProfileLevel = ReturnUserProfileLevel(userEperience);
+            int nextLevelExperienceNeeded = 0;
+
+            if (currentUerProfileLevel == maxLevel)
+            {
+                return maximumAvailableExperience;
+            }
+            else
+            {
+                for (int i = 0; i < _userProfileLevel.Count; i++)
+                {
+                    if (currentUerProfileLevel == _userProfileLevel.Values.ElementAt(i))
+                    {
+                        nextLevelExperienceNeeded = _userProfileLevel.Keys.ElementAt(i + 1);
+                        break;
+                    }
+                }
+            }
+
+            return nextLevelExperienceNeeded;
         }
     }
 }

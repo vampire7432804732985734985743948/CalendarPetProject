@@ -47,5 +47,13 @@ namespace CalendarPetProject.Models.CustomerData
             }
         }
         public string? ArhivedStreaks { get; set; }
+        public string? ProfileDescription { get; set; }
+        public string? Country { get; set; } = string.Empty;
+        public string? Youtube { get; set; } = string.Empty;
+        public string? LinkedIn { get; set; } = string.Empty;
+        public string? Instagram { get; set; } = string.Empty;
+        public string? X { get; set; } = string.Empty;
+        public string? Facebook { get; set; } = string.Empty;
+
     }
 }

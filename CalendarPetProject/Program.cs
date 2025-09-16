@@ -1,5 +1,6 @@
 using CalendarPetProject.BusinessLogic.AITextGenerative;
 using CalendarPetProject.BusinessLogic.JSONParse;
+using CalendarPetProject.BusinessLogic.Profile;
 using CalendarPetProject.Data;
 using CalendarPetProject.Data.Constants;
 using CalendarPetProject.Data.Constants.FileNames;
@@ -39,7 +40,7 @@ builder.Services.AddControllersWithViews()
         options.JsonSerializerOptions.PropertyNamingPolicy = null; // or adjust naming if needed
     });
 builder.Services.AddTransient<GeminiDelegatingHandler>();
-
+builder.Services.AddScoped<ExperienceLevelHandler>();
 builder.Services.AddHttpClient<GeminiClient>(client =>
 {
     client.BaseAddress = new Uri("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent");
